@@ -1,0 +1,203 @@
+/* ===========================
+   HEADER
+=========================== */
+
+.header{
+
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    background:rgba(255,255,255,.92);
+
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+
+    box-shadow:var(--shadow-md);
+
+    transition:var(--transition);
+
+}
+
+
+/* ===========================
+   NAVBAR
+=========================== */
+
+.navbar{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    height:80px;
+
+    padding:0 1rem;
+
+    position:relative;
+
+}
+
+
+/* ===========================
+   HERO
+=========================== */
+
+.hero{
+
+    padding:4rem 0;
+
+    background:linear-gradient(
+        180deg,
+        var(--color-white) 0%,
+        var(--color-background) 100%
+    );
+
+    overflow:hidden;
+
+}
+
+.hero .container{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    gap:2rem;
+
+}
+
+
+/* ===========================
+   HERO IMAGE
+=========================== */
+
+.hero-image{
+
+    flex:1;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    position:relative;
+
+}
+
+.hero-image::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:420px;
+    height:420px;
+
+    border-radius:50%;
+
+    background:rgba(56,178,172,.12);
+
+    top:50%;
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    z-index:0;
+
+}
+
+.hero-image::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:300px;
+    height:300px;
+
+    border-radius:50%;
+
+    border:2px solid rgba(56,178,172,.20);
+
+    top:15%;
+    right:5%;
+
+    z-index:0;
+
+}
+
+.hero-image img{
+
+    position:relative;
+    z-index:1;
+
+    width:100%;
+    max-width:460px;
+
+    object-fit:cover;
+
+    border-radius:30px;
+
+    box-shadow:var(--shadow-lg);
+
+    transition:var(--transition);
+
+}
+
+.hero-image img:hover{
+
+    transform:translateY(-8px) scale(1.02);
+
+}
+/* ===========================
+   PRODUCTS
+=========================== */
+
+.products{
+
+    padding:var(--space-xxl) 0;
+
+}
+
+
+/* ===========================
+   CATEGORIES
+=========================== */
+
+.categories{
+
+    padding:var(--space-xxl) 0;
+
+}
+
+
+/* ===========================
+   SECTION SPACING
+=========================== */
+
+.section-title{
+
+    margin-bottom:var(--space-lg);
+
+}
+
+
+/* ===========================
+   UTILIDADES
+=========================== */
+
+.hidden{
+    display:none;
+}
+
+.text-center{
+    text-align:center;
+}
+
+.mt-lg{
+    margin-top:var(--space-lg);
+}
+
+.mb-lg{
+    margin-bottom:var(--space-lg);
+}

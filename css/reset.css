@@ -1,0 +1,77 @@
+/* ===========================
+   VARIABLES GLOBALES
+=========================== */
+
+:root{
+
+    /* ===========================
+       COLORES
+    ========================== */
+
+    --color-primary:#0F4C5C;
+    --color-secondary:#3A7CA5;
+    --color-accent:#6EC6B8;
+    --color-highlight:#B8D986;
+
+    --color-white:#FFFFFF;
+    --color-background:#F7FAFA;
+    --color-surface:#FFFFFF;
+
+    --color-text:#23313A;
+    --color-text-light:#66737D;
+    --color-dark:#23313A;
+
+    /* Grises */
+
+    --color-gray:#6B7280;
+    --color-border:#E5E7EB;
+
+    /* ===========================
+       TIPOGRAFÍA
+    ========================== */
+
+    --font-family:"Poppins",sans-serif;
+
+    --font-xs:.75rem;
+    --font-sm:.875rem;
+    --font-md:1rem;
+    --font-lg:1.25rem;
+    --font-xl:2rem;
+    --font-xxl:3rem;
+
+    /* ===========================
+       ESPACIADOS
+    ========================== */
+
+    --space-xs:.5rem;
+    --space-sm:1rem;
+    --space-md:1.5rem;
+    --space-lg:2rem;
+    --space-xl:3rem;
+    --space-xxl:6rem;
+
+    /* ===========================
+       BORDES
+    ========================== */
+
+    --radius-sm:8px;
+    --radius-md:12px;
+    --radius-lg:20px;
+    --radius-xl:24px;
+    --radius-pill:50px;
+
+    /* ===========================
+       SOMBRAS
+    ========================== */
+
+    --shadow-sm:0 2px 8px rgba(0,0,0,.05);
+    --shadow-md:0 8px 20px rgba(0,0,0,.08);
+    --shadow-lg:0 20px 45px rgba(0,0,0,.15);
+
+    /* ===========================
+       TRANSICIONES
+    ========================== */
+
+    --transition:.35s ease;
+
+}

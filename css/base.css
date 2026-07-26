@@ -1,0 +1,162 @@
+/* ===========================
+   IMPORTACIÓN DE FUENTES
+=========================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+
+/* ===========================
+   ESTILOS GLOBALES
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:var(--font-family);
+
+    font-size:var(--font-md);
+
+    color:var(--color-text);
+
+    background:var(--color-background);
+
+    line-height:1.6;
+
+    overflow-x:hidden;
+
+}
+
+
+/* ===========================
+   CONTENEDOR
+=========================== */
+
+.container{
+
+    width:min(1200px,90%);
+
+    margin:0 auto;
+
+}
+
+
+/* ===========================
+   IMÁGENES
+=========================== */
+
+img{
+
+    display:block;
+
+    max-width:100%;
+
+    height:auto;
+
+}
+
+
+/* ===========================
+   ENLACES
+=========================== */
+
+a{
+
+    color:inherit;
+
+    text-decoration:none;
+
+    transition:var(--transition);
+
+}
+
+
+/* ===========================
+   LISTAS
+=========================== */
+
+ul{
+
+    list-style:none;
+
+}
+
+
+/* ===========================
+   BOTONES
+=========================== */
+
+button{
+
+    font:inherit;
+
+    background:none;
+
+    border:none;
+
+    cursor:pointer;
+
+}
+
+
+/* ===========================
+   TIPOGRAFÍA
+=========================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+
+    color:var(--color-text);
+
+    line-height:1.2;
+
+    font-weight:700;
+
+}
+
+p{
+
+    color:var(--color-text-light);
+
+}
+
+
+/* ===========================
+   SELECCIÓN DE TEXTO
+=========================== */
+
+::selection{
+
+    background:var(--color-primary);
+
+    color:var(--color-white);
+
+}
+
+
+/* ===========================
+   FOCUS ACCESIBLE
+=========================== */
+
+a:focus-visible,
+button:focus-visible{
+
+    outline:3px solid var(--color-secondary);
+
+    outline-offset:4px;
+
+    border-radius:var(--radius-sm);
+
+}
