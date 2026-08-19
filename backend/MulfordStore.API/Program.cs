@@ -1,15 +1,24 @@
+using Microsoft.EntityFrameworkCore;
+using MulfordStore.API.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Conexión con SQL Server
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection")
+    ));
 
+// Controladores
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+// Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Swagger en desarrollo
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
