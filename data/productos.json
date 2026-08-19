@@ -1,0 +1,478 @@
+[
+  {
+    "id": 1,
+    "nombre": "Base Queen Face Tint",
+    "categoria": "Bases",
+    "referencia": "BQF2053",
+    "tono": "03",
+    "stock": 4,
+    "precio": 25000,
+    "imagen": "assets/images/products/base-queen-face-tint-tono3.png"
+  },
+  {
+    "id": 2,
+    "nombre": "Base Queen Face Tint",
+    "categoria": "Bases",
+    "referencia": "BQF2053",
+    "tono": "02",
+    "stock": 3,
+    "precio": 25000,
+    "imagen": "assets/images/products/base-queen-face-tint-tono2.png"
+  },
+  {
+    "id": 3,
+    "nombre": "Base Aura",
+    "categoria": "Bases",
+    "referencia": "BAT2272",
+    "tono": "04",
+    "stock": 5,
+    "precio": 30000,
+    "imagen": "assets/images/products/base-aura-04.png"
+  },
+  {
+    "id": 4,
+    "nombre": "Base Mousse",
+    "categoria": "Bases",
+    "referencia": "BMT1675",
+    "tono": "02",
+    "stock": 3,
+    "precio": 25000,
+    "imagen": "assets/images/products/base-mousse-02.png"
+  },
+  {
+    "id": 5,
+    "nombre": "Base Mousse",
+    "categoria": "Bases",
+    "referencia": "BMT1675",
+    "tono": "03",
+    "stock": 3,
+    "precio": 25000,
+    "imagen": "assets/images/products/base-mousse-03.png"
+  }
+  ,
+{
+  "id": 6,
+  "nombre": "Corrector Doble Super Cool",
+  "categoria": "Correctores",
+  "referencia": "SP98",
+  "tono": "02",
+  "stock": 2,
+  "precio": 15000,
+  "imagen": "assets/images/products/corrector-doble-super-cool-02.png"
+},
+{
+  "id": 7,
+  "nombre": "Corrector Doble Super Cool",
+  "categoria": "Correctores",
+  "referencia": "SP98",
+  "tono": "03",
+  "stock": 3,
+  "precio": 15000,
+  "imagen": "assets/images/products/corrector-doble-super-cool-03.png"
+},
+{
+  "id": 8,
+  "nombre": "Corrector Doble Super Cool",
+  "categoria": "Correctores",
+  "referencia": "SP98",
+  "tono": "04",
+  "stock": 4,
+  "precio": 15000,
+  "imagen": "assets/images/products/corrector-doble-super-cool-04.png"
+},
+{
+  "id": 9,
+  "nombre": "Corrector y Tratamiento Super Concealer",
+  "categoria": "Correctores",
+  "referencia": "SC8",
+  "tono": "03",
+  "stock": 4,
+  "precio": 20000,
+  "imagen": "assets/images/products/corrector-y-tratamiento-super-concealer-03.png"
+}
+,
+{
+  "id": 10,
+  "nombre": "Polvos Sueltos Master Touch",
+  "categoria": "Polvos",
+  "referencia": "PMT1741",
+  "tono": "01",
+  "stock": 3,
+  "precio": 25000,
+  "imagen": "assets/images/products/polvos-sueltos-master-touch-01.png"
+},
+{
+  "id": 11,
+  "nombre": "Polvos Sueltos Master Touch",
+  "categoria": "Polvos",
+  "referencia": "PMT1741",
+  "tono": "02",
+  "stock": 3,
+  "precio": 25000,
+  "imagen": "assets/images/products/polvos-sueltos-master-touch-02.png"
+},
+{
+  "id": 12,
+  "nombre": "Polvo de Hadas Trendy 15g",
+  "categoria": "Polvos",
+  "referencia": "PH03",
+  "tono": "ESTÁNDAR",
+  "stock": 3,
+  "precio": 12000,
+  "imagen": "assets/images/products/polvo-de-hadas-trendy-15g.png"
+}
+,
+{
+  "id": 13,
+  "nombre": "Iluminador Wonderland Glow",
+  "categoria": "Iluminadores",
+  "referencia": "WGT1652",
+  "tono": "ESTÁNDAR",
+  "stock": 3,
+  "precio": 20000,
+  "imagen": "assets/images/products/iluminador-wonderland-glow.png"
+},
+{
+  "id": 14,
+  "nombre": "Kit x 4 Iluminador Dreams",
+  "categoria": "Iluminadores",
+  "referencia": "ID02",
+  "tono": "ESTÁNDAR",
+  "stock": 3,
+  "precio": 15000,
+  "imagen": "assets/images/products/kit-x4-iluminador-dreams.png"
+},
+{
+  "id": 15,
+  "nombre": "Iluminador Líquido Brilla",
+  "categoria": "Iluminadores",
+  "referencia": "SLB1927",
+  "tono": "ESTÁNDAR",
+  "stock": 3,
+  "precio": 8000,
+  "imagen": "assets/images/products/iluminador-liquido-brilla.png"
+}
+,
+{
+  "id": 16,
+  "nombre": "Contorno en Barra Individual Bronzer Stick",
+  "categoria": "Contornos",
+  "referencia": "BST1412",
+  "tono": "ESTÁNDAR",
+  "stock": 3,
+  "precio": 15000,
+  "imagen": "assets/images/products/contorno-en-barra-individual-bronzer-stick.png"
+},
+{
+  "id": 17,
+  "nombre": "Contorno en Crema Bronzer Stamp",
+  "categoria": "Contornos",
+  "referencia": "BET1496",
+  "tono": "01",
+  "stock": 3,
+  "precio": 20000,
+  "imagen": "assets/images/products/contorno-en-crema-bronzer-stamp-01.png"
+}
+,
+{
+  "id": 18,
+  "nombre": "Rubor Dúo Barbie Core",
+  "categoria": "Rubores",
+  "referencia": "MTT2220",
+  "tono": "ESTÁNDAR",
+  "stock": 3,
+  "precio": 15000,
+  "imagen": "assets/images/products/rubor-duo-barbie-core-01.png"
+}
+,
+{
+  "id": 19,
+  "nombre": "Rubor Doble Loop Blush",
+  "categoria": "Rubores",
+  "referencia": "BLT1686",
+  "tono": "ESTÁNDAR",
+  "stock": 3,
+  "precio": 15000,
+  "imagen": "assets/images/products/rubor-doble-loop-blush-02.png"
+}
+,
+{
+  "id": 20,
+  "nombre": "Rubor en Crema Aura",
+  "categoria": "Rubores",
+  "referencia": "ABT1742",
+  "tono": "01",
+  "stock": 3,
+  "precio": 15000,
+  "imagen": "assets/images/products/rubor-en-crema-aura-01.png"
+},
+{
+  "id": 21,
+  "nombre": "Rubor en Crema Aura",
+  "categoria": "Rubores",
+  "referencia": "ABT1742",
+  "tono": "02",
+  "stock": 3,
+  "precio": 15000,
+  "imagen": "assets/images/products/rubor-en-crema-aura-02.png"
+}
+,
+{
+  "id": 22,
+  "nombre": "Rubor en Crema Star",
+  "categoria": "Rubores",
+  "referencia": "RCS2205",
+  "tono": "02",
+  "stock": 3,
+  "precio": 15000,
+  "imagen": "assets/images/products/rubor-en-crema-star-02.png"
+},
+{
+  "id": 23,
+  "nombre": "Rubor en Crema Star",
+  "categoria": "Rubores",
+  "referencia": "RCS2205",
+  "tono": "03",
+  "stock": 3,
+  "precio": 15000,
+  "imagen": "assets/images/products/rubor-en-crema-star-03.png"
+},
+{
+  "id": 24,
+  "nombre": "Rubor en Crema Star",
+  "categoria": "Rubores",
+  "referencia": "RCS2205",
+  "tono": "04",
+  "stock": 3,
+  "precio": 15000,
+  "imagen": "assets/images/products/rubor-en-crema-star-04.png"
+}
+,
+{
+  "id": 25,
+  "nombre": "Rubor en Barra Mila",
+  "categoria": "Rubores",
+  "referencia": "R1598",
+  "tono": "ESTÁNDAR",
+  "stock": 3,
+  "precio": 10000,
+  "imagen": "assets/images/products/rubor-en-barra-mila.png"
+}
+,
+{
+  "id": 26,
+  "nombre": "Brillo de Labios Lip Oil Pretty",
+  "categoria": "Labios",
+  "referencia": "LOP2186",
+  "tono": "02",
+  "stock": 3,
+  "precio": 15000,
+  "imagen": "assets/images/products/brillo-de-labios-lip-oil-pretty-02.png"
+},
+{
+  "id": 27,
+  "nombre": "Brillo de Labios Lip Oil Pretty",
+  "categoria": "Labios",
+  "referencia": "LOP2186",
+  "tono": "03",
+  "stock": 3,
+  "precio": 15000,
+  "imagen": "assets/images/products/brillo-de-labios-lip-oil-pretty-03.png"
+}
+
+,
+{
+  "id": 28,
+  "nombre": "Delineador en Plumón Doble",
+  "categoria": "Ojos",
+  "referencia": "CAM02",
+  "tono": "ESTÁNDAR",
+  "stock": 3,
+  "precio": 15000,
+  "imagen": "assets/images/products/delineador-en-plumon-doble.png"
+},
+{
+  "id": 29,
+  "nombre": "Lápiz Delineador Ojos Safari",
+  "categoria": "Ojos",
+  "referencia": "DST2259",
+  "tono": "CAFÉ OSCURO",
+  "stock": 3,
+  "precio": 5000,
+  "imagen": "assets/images/products/lapiz-delineador-ojos-safari-cafe-oscuro.png"
+},
+{
+  "id": 30,
+  "nombre": "Lápiz Delineador Ojos Safari",
+  "categoria": "Ojos",
+  "referencia": "DST2259",
+  "tono": "NEGRO",
+  "stock": 3,
+  "precio": 5000,
+  "imagen": "assets/images/products/lapiz-delineador-ojos-safari-negro.png"
+}
+,
+{
+  "id": 31,
+  "nombre": "Sombra Frutas Peach",
+  "categoria": "Ojos",
+  "referencia": "C06-09PEACH",
+  "tono": "ESTÁNDAR",
+  "stock": 3,
+  "precio": 15000,
+  "imagen": "assets/images/products/sombra-frutas-peach.png"
+}
+,
+{
+  "id": 32,
+  "nombre": "Brillo Lip Oil Sandía",
+  "categoria": "Labios",
+  "referencia": "BLS2258",
+  "tono": "02",
+  "stock": 3,
+  "precio": 15000,
+  "imagen": "assets/images/products/brillo-lip-oil-sandia-02.png"
+},
+{
+  "id": 33,
+  "nombre": "Brillo Lip Oil Sandía",
+  "categoria": "Labios",
+  "referencia": "BLS2258",
+  "tono": "03",
+  "stock": 3,
+  "precio": 15000,
+  "imagen": "assets/images/products/brillo-lip-oil-sandia-03.png"
+},
+{
+  "id": 34,
+  "nombre": "Brillo Lip Oil Sandía",
+  "categoria": "Labios",
+  "referencia": "BLS2258",
+  "tono": "04",
+  "stock": 3,
+  "precio": 15000,
+  "imagen": "assets/images/products/brillo-lip-oil-sandia-04.png"
+},
+{
+  "id": 35,
+  "nombre": "Brillo Lip Oil Sandía",
+  "categoria": "Labios",
+  "referencia": "BLS2258",
+  "tono": "06",
+  "stock": 3,
+  "precio": 15000,
+  "imagen": "assets/images/products/brillo-lip-oil-sandia-06.png"
+}
+,
+{
+  "id": 36,
+  "nombre": "Tinta con Escarcha Be Mine",
+  "categoria": "Labios",
+  "referencia": "TEB1745",
+  "tono": "ESTÁNDAR",
+  "stock": 3,
+  "precio": 10000,
+  "imagen": "assets/images/products/tinta-con-escarcha-be-mine.png"
+},
+{
+  "id": 37,
+  "nombre": "Tinta y Brillo Doggie Lips Trendy",
+  "categoria": "Labios",
+  "referencia": "DL07",
+  "tono": "ESTÁNDAR",
+  "stock": 3,
+  "precio": 10000,
+  "imagen": "assets/images/products/tinta-y-brillo-doggie-lips-trendy.png"
+},
+{
+  "id": 38,
+  "nombre": "Brillo Gloss Mágico Groovy",
+  "categoria": "Labios",
+  "referencia": "BLT2219",
+  "tono": "ESTÁNDAR",
+  "stock": 3,
+  "precio": 10000,
+  "imagen": "assets/images/products/brillo-gloss-magico-groovy.png"
+},
+{
+  "id": 39,
+  "nombre": "Brillo de Labios Hologram",
+  "categoria": "Labios",
+  "referencia": "BHG1893",
+  "tono": "ESTÁNDAR",
+  "stock": 3,
+  "precio": 15000,
+  "imagen": "assets/images/products/brillo-de-labios-hologram.png"
+},
+{
+  "id": 40,
+  "nombre": "Dúo Exfoliante + Mascarilla de Labios Pink Lemon",
+  "categoria": "Labios",
+  "referencia": "EML1727",
+  "tono": "ESTÁNDAR",
+  "stock": 3,
+  "precio": 10000,
+  "imagen": "assets/images/products/duo-exfoliante-mascarilla-labios-pink-lemon.png"
+},
+{
+  "id": 41,
+  "nombre": "Fijador Dreams",
+  "categoria": "Fijadores",
+  "referencia": "FDT2173",
+  "tono": "ESTÁNDAR",
+  "stock": 3,
+  "precio": 15000,
+  "imagen": "assets/images/products/fijador-dreams.png"
+},
+{
+  "id": 42,
+  "nombre": "Mascarilla Arcilla Nebula",
+  "categoria": "Mascarillas",
+  "referencia": "MNT2389",
+  "tono": "ESTÁNDAR",
+  "stock": 3,
+  "precio": 15000,
+  "imagen": "assets/images/products/mascarilla-arcilla-nebula.png"
+},
+{
+  "id": 43,
+  "nombre": "Mascarilla Romántica",
+  "categoria": "Mascarillas",
+  "referencia": "MRT2388",
+  "tono": "ESTÁNDAR",
+  "stock": 3,
+  "precio": 15000,
+  "imagen": "assets/images/products/mascarilla-romantica.png"
+},
+{
+  "id": 44,
+  "nombre": "Esponja Dúo Barbie",
+  "categoria": "Accesorios",
+  "referencia": "MTT2412",
+  "tono": "ESTÁNDAR",
+  "stock": 3,
+  "precio": 15000,
+  "imagen": "assets/images/products/esponja-duo-barbie.png"
+},
+{
+  "id": 45,
+  "nombre": "Esponja Panda",
+  "categoria": "Accesorios",
+  "referencia": "EPT2411",
+  "tono": "ESTÁNDAR",
+  "stock": 5,
+  "precio": 15000,
+  "imagen": "assets/images/products/esponja-panda.png"
+}
+,
+{
+  "id": 46,
+  "nombre": "Torre Cat Face",
+  "categoria": "Rubores",
+  "referencia": "KCF1673",
+  "tono": "ESTÁNDAR",
+  "stock": 3,
+  "precio": 15000,
+  "imagen": "assets/images/products/torre-cat-face.png"
+}
+]

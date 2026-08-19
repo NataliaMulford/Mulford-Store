@@ -2,178 +2,348 @@
    TABLETS
 =========================== */
 
-@media (max-width:992px){
+@media (max-width:992px) {
 
-    .hero .container{
-        flex-direction:column;
-        text-align:center;
+    .hero .container {
+        flex-direction: column;
+        text-align: center;
     }
 
-    .hero-content{
-        order:2;
+    .hero-content {
+        order: 2;
     }
 
-    .hero-image{
-        order:1;
-        margin-bottom:2rem;
+    .hero-image {
+        order: 1;
+        margin-bottom: 2rem;
     }
 
-    .hero-info{
-        justify-content:center;
-        flex-wrap:wrap;
+    .hero-info {
+        justify-content: center;
+        flex-wrap: wrap;
     }
 
-    .btn-secondary{
-        margin-left:0;
-        margin-top:1rem;
+    .btn-secondary {
+        margin-left: 0;
+        margin-top: 1rem;
     }
+
+    .products-grid{
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:2rem;
 
 }
 
+.categories-grid{
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:2rem;
+
+}
+
+}
 
 /* ===========================
    CELULARES
 =========================== */
 
-@media (max-width:768px){
+@media (max-width:768px) {
 
-    .menu-toggle{
-        display:block;
+    /* Menú */
+
+    .menu-toggle {
+        display: block;
     }
 
-    .nav-links{
+    .nav-links {
 
-        display:none;
+        display: none;
 
-        position:absolute;
+        position: absolute;
 
-        top:80px;
-        left:0;
+        top: 80px;
+        left: 0;
 
-        width:100%;
+        width: 100%;
 
-        flex-direction:column;
-        align-items:center;
+        flex-direction: column;
+        align-items: center;
 
-        gap:1.2rem;
+        gap: 1.2rem;
 
-        padding:1.5rem 0;
+        padding: 1.5rem 0;
 
-        background:var(--color-white);
+        background: var(--color-white);
 
-        box-shadow:var(--shadow-md);
+        box-shadow: var(--shadow-md);
 
-        z-index:999;
-
-    }
-
-    .nav-links.active{
-        display:flex;
-    }
-
-    .nav-links li{
-        width:100%;
-        text-align:center;
-    }
-
-    .nav-links a{
-        display:block;
-        padding:.8rem 0;
-    }
-
-    .hero{
-
-        padding:3rem 0;
+        z-index: 999;
 
     }
 
-    .hero h1{
+    .nav-links.active {
+        display: flex;
+    }
 
-        font-size:2.3rem;
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links a {
+        display: block;
+        padding: .8rem 0;
+    }
+
+    /* Hero */
+
+    .hero {
+        padding: 3rem 0;
+    }
+
+    .hero h1 {
+        font-size: 2.3rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .hero-image img {
+        max-width: 340px;
+    }
+
+    .hero-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+    }
+
+    /* Buscador */
+
+    .search-container {
+        width: 100%;
+        padding: 0 1rem;
+    }
+
+    .search-input {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* Filtros */
+
+    .filters {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: .7rem;
+        padding: 0 1rem;
+    }
+
+    .filter-btn {
+        font-size: .85rem;
+        padding: .65rem 1rem;
+    }
+
+    /* Categorías */
+
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Productos */
+
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .product-card {
+        padding: 1.2rem;
+    }
+
+    .product-card img {
+
+        width: 100%;
+
+        max-width: 240px;
+
+        height: 240px;
+
+        object-fit: contain;
+
+        margin: 0 auto 1rem;
+
+        display: block;
+
+        transition: .3s;
 
     }
 
-    .hero p{
+    .product-card h3 {
 
-        font-size:1rem;
+        font-size: 1.25rem;
 
-    }
+        font-weight: 700;
 
-    .hero-image img{
+        line-height: 1.35;
 
-        max-width:340px;
+        color: var(--color-primary);
 
-    }
+        margin-bottom: .8rem;
 
-    .products-grid{
-
-        grid-template-columns:1fr;
+        min-height: 68px;
 
     }
 
-    .categories-grid{
+    .price {
 
-        grid-template-columns:repeat(2,1fr);
+        font-size: 2rem;
+
+        font-weight: 700;
+
+        color: var(--color-primary);
+
+        margin: 1rem 0;
 
     }
 
-    .footer-content{
+    .quantity-selector {
+        justify-content: center;
+    }
 
-        text-align:center;
+    .btn-comprar {
+        width: 100%;
+    }
+
+    /* Carrito */
+
+    .carrito-panel {
+        width: 90%;
+        max-width: 380px;
+    }
+
+    .item-carrito {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .item-carrito img {
+        width: 90px;
+    }
+
+    .cantidad-carrito {
+        justify-content: center;
+    }
+
+    /* Footer */
+
+    .footer-content {
+        text-align: center;
+    }
+
+
+    /* ===========================
+   CATEGORÍAS
+=========================== */
+
+
+    .category-card {
+
+        min-height: 190px;
+
+        padding: 1.2rem;
 
     }
+
+    .category-card img {
+
+        width: 95px;
+
+        height: 95px;
+
+    }
+
+    .category-card h3 {
+
+        font-size: 1.1rem;
+
+    }
+
 
 }
-
 
 /* ===========================
    CELULARES PEQUEÑOS
 =========================== */
 
-@media (max-width:480px){
+@media (max-width:480px) {
 
-    .container{
+    .category-card {
 
-        width:92%;
+        min-height: 170px;
 
-    }
-
-    .hero h1{
-
-        font-size:2rem;
+        padding: 1rem;
 
     }
 
-    .hero-info{
+    .category-card img {
 
-        flex-direction:column;
+        width: 80px;
 
-        gap:1rem;
-
-    }
-
-    .btn{
-
-        width:100%;
+        height: 80px;
 
     }
 
-    .categories-grid{
+    .category-card h3 {
 
-        grid-template-columns:1fr;
-
-    }
-
-    .category-card{
-
-        min-height:auto;
+        font-size: 1rem;
 
     }
 
-    .product-card{
 
-        min-height:auto;
+    .product-card {
+
+        padding: 1rem;
 
     }
 
-}
+    .product-card img {
+
+        max-width: 180px;
+
+        height: 180px;
+
+    }
+
+    .price {
+
+        font-size: 1.2rem;
+
+    }
+
+    .qty-btn {
+
+        width: 35px;
+
+        height: 35px;
+
+    }
+
+    .carrito-panel {
+
+        width: 100%;
+
+        max-width: 100%;
+
+    }
+    
+    }

@@ -1,0 +1,97 @@
+/* ===========================
+   PRODUCTO
+=========================== */
+
+.producto{
+
+    padding:5rem 0;
+
+}
+
+.producto-detalle{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:4rem;
+
+    align-items:center;
+
+}
+
+.producto-imagen{
+
+    background:#fff;
+
+    border-radius:25px;
+
+    padding:2rem;
+
+    box-shadow:0 10px 35px rgba(0,0,0,.08);
+
+    text-align:center;
+
+}
+
+.producto-imagen img{
+
+    width:100%;
+
+    max-width:420px;
+
+    object-fit:contain;
+
+}
+
+.producto-info h1{
+
+    font-size:2.3rem;
+
+    margin-bottom:1rem;
+
+    color:var(--color-primary);
+
+}
+
+.producto-referencia,
+.producto-tono,
+.producto-stock{
+
+    margin:.7rem 0;
+
+    color:#666;
+
+}
+
+.producto-precio{
+
+    font-size:2.5rem;
+
+    font-weight:700;
+
+    color:var(--color-primary);
+
+    margin:2rem 0;
+
+}
+
+.producto-botones{
+
+    display:flex;
+
+    gap:1rem;
+
+    margin-top:2rem;
+
+}
+
+.producto-descripcion{
+
+    margin-top:2rem;
+
+    line-height:1.8;
+
+    color:#555;
+
+}

@@ -39,9 +39,11 @@
 
             <nav class="navbar">
 
-                <a href="#inicio" class="logo">
+                <a href="index.html" class="logo">
                     <img src="./assets/logos/logo-mulford.png" alt="Logo Mulford">
                 </a>
+
+
                 <ul class="nav-links" id="nav-menu">
 
                     <li><a href="index.html">Inicio</a></li>
@@ -50,10 +52,9 @@
 
                     <li><a href="catalogo.html">Catálogo</a></li>
 
-                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="index.html#contacto">Contacto</a></li>
 
                 </ul>
-
                 <div class="nav-actions">
 
                     <button type="button" class="icon-btn" aria-label="Buscar">
@@ -83,149 +84,58 @@
 
     <main id="inicio">
 
+
+
         <!-- =========================
-                 HERO
+             PRODUCTOS
         ========================== -->
 
-        <section class="hero">
-
-            <div class="container">
-
-                <div class="hero-content">
-
-                    <span class="hero-badge">
-                        ✨ BELLEZA QUE REFLEJA TU ESENCIA
-                    </span>
-
-                    <h1>
-                        Descubre productos Trendy para resaltar tu belleza.
-                    </h1>
-
-                    <p>
-                        Maquillaje, cuidado facial y accesorios cuidadosamente seleccionados para ofrecer calidad,
-                        estilo y confianza en cada compra.
-                    </p>
-
-                    <div class="hero-buttons">
-
-                        <a href="#productos" class="btn btn-primary">
-                            Comprar ahora
-                        </a>
-
-                        <a href="catalogo.html" class="btn btn-secondary">
-                            Ver catálogo
-                        </a>
-
-                    </div>
-
-                    <div class="hero-info">
-
-                        <div>
-                            ✅ Productos originales
-                        </div>
-
-                        <div>
-                            🚚 Envíos a toda Colombia
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="hero-image">
-
-                    <img src="./assets/images/hero-modelo.png" alt="Modelo utilizando productos Mulford Store">
-
-                </div>
-
-            </div>
-
-        </section>
-        <!-- =========================
-             CATEGORÍAS
-        ========================== -->
-
-        <section class="categories" id="categorias">
+        <section class="products" id="productos">
 
             <div class="container">
 
                 <div class="section-title">
 
-                    <span>Categorías</span>
+                    <span>Más vendidos</span>
 
                     <h2>
-                        Encuentra lo que buscas
+                        Productos destacados
                     </h2>
 
                     <p>
-                        Explora nuestras categorías favoritas y descubre los productos ideales para tu rutina de
-                        belleza.
+                        Descubre la selección favorita de nuestras clientes con la mejor calidad y tendencia.
                     </p>
 
                 </div>
 
-                <div class="categories-grid">
 
-                    <a href="catalogo.html?categoria=Labios" class="category-card">
-                        <img src="./assets/images/icons/labiales.png" alt="Labiales" loading="lazy">
-                        <h3>Labiales</h3>
-                    </a>
-
-                    <a href="catalogo.html?categoria=Bases" class="category-card">
-                        <img src="./assets/images/icons/rostro.png" alt="Productos para el rostro" loading="lazy">
-                        <h3>Rostro</h3>
-                    </a>
-
-                    <a href="catalogo.html?categoria=Ojos" class="category-card">
-                        <img src="./assets/images/icons/ojos.png" alt="Productos para los ojos" loading="lazy">
-                        <h3>Ojos</h3>
-                    </a>
-
-                    <a href="catalogo.html?categoria=Accesorios" class="category-card">
-                        <img src="./assets/images/icons/accesorios.png" alt="Accesorios de belleza" loading="lazy">
-                        <h3>Accesorios</h3>
-                    </a>
-
+                <div class="search-container">
+                    <input type="text" id="buscador" class="search-input" placeholder="Buscar productos..."
+                        autocomplete="off">
                 </div>
-                
-            </div>
 
-        </section>
+                <div class="filters">
 
-
-        <!-- =========================
-         CATÁLOGO
-========================== -->
-
-        <section class="catalogo-preview" id="productos">
-
-            <div class="container">
-
-                <div class="section-title">
-
-                    <span>Nuestro catálogo</span>
-
-                    <h2>Descubre toda nuestra colección</h2>
-
-                    <p>
-                        Explora más de 100 productos Trendy de maquillaje, cuidado facial y accesorios para resaltar tu
-                        belleza.
-                    </p>
+                    <button class="filter-btn active" data-category="Todos">Todos</button>
+                    <button class="filter-btn" data-category="Bases">Bases</button>
+                    <button class="filter-btn" data-category="Correctores">Correctores</button>
+                    <button class="filter-btn" data-category="Polvos">Polvos</button>
+                    <button class="filter-btn" data-category="Iluminadores">Iluminadores</button>
+                    <button class="filter-btn" data-category="Contornos">Contornos</button>
+                    <button class="filter-btn" data-category="Rubores">Rubores</button>
+                    <button class="filter-btn" data-category="Ojos">Ojos</button>
+                    <button class="filter-btn" data-category="Labios">Labios</button>
+                    <button class="filter-btn" data-category="Mascarillas">Mascarillas</button>
+                    <button class="filter-btn" data-category="Fijadores">Fijadores</button>
+                    <button class="filter-btn" data-category="Accesorios">Accesorios</button>
 
                 </div>
 
-                <div class="catalogo-preview-content">
-
-                    <a href="catalogo.html" class="btn btn-primary">
-                        Ver catálogo completo
-                    </a>
-
-                </div>
+                <div class="products-grid" id="contenedor-productos"></div>
 
             </div>
 
         </section>
-        ──────────────────────────
         <!-- =========================
              FOOTER
         ========================== -->
@@ -259,19 +169,19 @@
                     <ul>
 
                         <li>
-                            <a href="#inicio">Inicio</a>
+                            <a href="index.html">Inicio</a>
                         </li>
 
                         <li>
-                            <a href="#categorias">Categorías</a>
+                            <a href="categorias.html">Categorías</a>
                         </li>
 
                         <li>
-                            <a href="#productos">Productos</a>
+                            <a href="catalogo.html">Catálogo</a>
                         </li>
 
                         <li>
-                            <a href="#contacto">Contacto</a>
+                            <a href="index.html#contacto">Contacto</a>
                         </li>
 
                     </ul>
@@ -356,7 +266,7 @@
     </aside>
 
     <script src="./js/app.js"></script>
-
+    <script src="./js/productos.js"></script>
 
 </body>
 
