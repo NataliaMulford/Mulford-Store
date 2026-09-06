@@ -4,25 +4,40 @@ const id = parseInt(parametros.get("id"));
 
 const contenedor = document.getElementById("detalle-producto");
 
+let listaProductos = [];
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+let cantidad = 1;
+
+
+// ========================================
+// CARGAR PRODUCTO DESDE LA API
+// ========================================
+
 async function cargarProducto() {
 
     try {
 
-        const respuesta = await fetch("./data/productos.json");
+        const respuesta = await fetch(
+            `http://localhost:5146/api/Productos/${id}`
+        );
 
-        const productos = await respuesta.json();
+        if (!respuesta.ok) {
 
-        const producto = productos.find(p => p.id === id);
+            if (respuesta.status === 404) {
 
-        if (!producto) {
+                contenedor.innerHTML = `
+                    <h2>Producto no encontrado</h2>
+                `;
 
-            contenedor.innerHTML = `
-                <h2>Producto no encontrado</h2>
-            `;
+                return;
+            }
 
-            return;
-
+            throw new Error(`Error HTTP: ${respuesta.status}`);
         }
+
+        const producto = await respuesta.json();
+
+        listaProductos = [producto];
 
         contenedor.innerHTML = `
 
@@ -30,7 +45,10 @@ async function cargarProducto() {
 
                 <div class="producto-imagen">
 
-                    <img src="${producto.imagen}" alt="${producto.nombre}">
+                    <img
+                        src="${producto.imagen}"
+                        alt="${producto.nombre}"
+                    >
 
                 </div>
 
@@ -51,50 +69,58 @@ async function cargarProducto() {
                     </p>
 
                     <div class="producto-precio">
-
                         $${producto.precio.toLocaleString("es-CO")}
+                    </div>
+
+                    <div class="producto-descripcion">
+
+                        Maquillaje original Trendy de excelente calidad,
+                        ideal para uso diario y profesional.
 
                     </div>
 
-                   <div class="producto-descripcion">
+                    <div class="quantity-selector">
 
-    Maquillaje original Trendy de excelente calidad, ideal para uso diario y profesional.
+                        <button
+                            id="menos-producto"
+                            class="qty-btn">
+                            −
+                        </button>
 
-</div>
+                        <span
+                            id="cantidad-producto"
+                            class="qty-value">
+                            1
+                        </span>
 
-                  <div class="quantity-selector">
+                        <button
+                            id="mas-producto"
+                            class="qty-btn">
+                            +
+                        </button>
 
-    <button id="menos-producto" class="qty-btn">
-        −
-    </button>
+                    </div>
 
-    <span id="cantidad-producto" class="qty-value">
-        1
-    </span>
+                    <div class="producto-botones">
 
-    <button id="mas-producto" class="qty-btn">
-        +
-    </button>
+                        <button
+                            id="agregar-producto"
+                            class="btn btn-primary">
 
-</div>
+                            Agregar al carrito
 
-<div class="producto-botones">
+                        </button>
 
-    <button
-        id="agregar-producto"
-        class="btn btn-primary">
+                        <a
+                            href="catalogo.html"
+                            class="btn btn-secondary">
 
-        Agregar al carrito
+                            Volver al catálogo
 
-    </button>
+                        </a>
 
-    <a href="catalogo.html" class="btn btn-secondary">
+                    </div>
 
-        Volver al catálogo
-
-    </a>
-
-</div>
                 </div>
 
             </div>
@@ -103,53 +129,124 @@ async function cargarProducto() {
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            "Error al cargar el producto:",
+            error
+        );
 
+        contenedor.innerHTML = `
+            <h2>No se pudo cargar el producto</h2>
+            <p>Verifica que la API esté encendida.</p>
+        `;
     }
+}
+
+
+// ========================================
+// GUARDAR CARRITO
+// ========================================
+
+function guardarCarrito() {
+
+    localStorage.setItem(
+        "carrito",
+        JSON.stringify(carrito)
+    );
 
 }
 
-cargarProducto();
 
-let cantidad = 1;
+// ========================================
+// ACTUALIZAR CONTADOR DEL CARRITO
+// ========================================
+
+function actualizarContadorCarrito() {
+
+    const contador =
+        document.getElementById("contador-carrito");
+
+    if (!contador) return;
+
+    const totalProductos = carrito.reduce(
+        (total, item) => total + item.cantidad,
+        0
+    );
+
+    contador.textContent = totalProductos;
+
+}
+
+
+// ========================================
+// BOTONES DEL PRODUCTO
+// ========================================
 
 document.addEventListener("click", (e) => {
 
+    // AUMENTAR CANTIDAD
     if (e.target.id === "mas-producto") {
 
-        cantidad++;
+        const producto = listaProductos.find(
+            p => p.id === id
+        );
 
-        document.getElementById("cantidad-producto").textContent = cantidad;
+        if (!producto) return;
+
+        if (cantidad < producto.stock) {
+
+            cantidad++;
+
+            document.getElementById(
+                "cantidad-producto"
+            ).textContent = cantidad;
+
+        }
 
     }
 
+
+    // DISMINUIR CANTIDAD
     if (e.target.id === "menos-producto") {
 
         if (cantidad > 1) {
 
             cantidad--;
 
-            document.getElementById("cantidad-producto").textContent = cantidad;
+            document.getElementById(
+                "cantidad-producto"
+            ).textContent = cantidad;
 
         }
 
     }
 
+
+    // AGREGAR AL CARRITO
     if (e.target.id === "agregar-producto") {
 
-        const producto = listaProductos.find(p => p.id === id);
+        const producto = listaProductos.find(
+            p => p.id === id
+        );
 
         if (!producto) return;
 
+
+        // VALIDAR STOCK
         if (cantidad > producto.stock) {
 
-            alert(`Solo quedan ${producto.stock} unidades disponibles.`);
+            alert(
+                `Solo quedan ${producto.stock} unidades disponibles.`
+            );
 
             return;
-
         }
 
-        const existe = carrito.find(item => item.id === id);
+
+        // BUSCAR SI YA EXISTE EN EL CARRITO
+        const existe = carrito.find(
+            item => item.id === id
+        );
+
 
         if (existe) {
 
@@ -169,14 +266,31 @@ document.addEventListener("click", (e) => {
 
         }
 
+
+        // ACTUALIZAR STOCK VISUAL
         producto.stock -= cantidad;
 
+
+        // GUARDAR
         guardarCarrito();
 
+
+        // ACTUALIZAR CONTADOR
         actualizarContadorCarrito();
 
+
+        // MENSAJE
         alert("Producto agregado al carrito");
 
     }
 
 });
+
+
+// ========================================
+// INICIAR
+// ========================================
+
+cargarProducto();
+
+actualizarContadorCarrito();

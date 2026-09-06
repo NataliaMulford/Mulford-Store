@@ -1,18 +1,18 @@
+# .NET
+bin/
+obj/
+
 # Visual Studio
 .vs/
 *.user
 *.suo
 
-# .NET
-bin/
-obj/
-
-# Archivos de configuración locales
-appsettings.Development.json
-
-# Sistema operativo
-.DS_Store
-Thumbs.db
-
 # Logs
 *.log
+
+# Configuración local
+appsettings.Development.json
+
+# Sistema
+.DS_Store
+Thumbs.db
