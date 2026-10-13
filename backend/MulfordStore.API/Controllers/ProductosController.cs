@@ -17,35 +17,59 @@ namespace MulfordStore.API.Controllers
             _context = context;
         }
 
+        // =========================================================
+        // OBTENER TODOS LOS PRODUCTOS
         // GET: api/Productos
+        // =========================================================
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Producto>>> GetProductos()
         {
-            var productos = await _context.Productos.ToListAsync();
+            var productos = await _context.Productos
+                .ToListAsync();
 
             return Ok(productos);
         }
 
+
+        // =========================================================
+        // OBTENER PRODUCTO POR ID
         // GET: api/Productos/1
+        // =========================================================
+
         [HttpGet("{id}")]
         public async Task<ActionResult<Producto>> GetProducto(int id)
         {
-            var producto = await _context.Productos.FindAsync(id);
+            var producto = await _context.Productos
+                .FindAsync(id);
 
             if (producto == null)
             {
-                return NotFound();
+                return NotFound(new
+                {
+                    mensaje = "El producto no existe."
+                });
             }
 
             return Ok(producto);
         }
 
+
+        // =========================================================
+        // CREAR PRODUCTO
         // POST: api/Productos
+        // SOLO ADMINISTRADOR
+        // =========================================================
+
         [HttpPost]
         [Authorize(Roles = "Administrador")]
-        public async Task<ActionResult<Producto>> PostProducto(Producto producto)
+        public async Task<ActionResult<Producto>> PostProducto(
+            Producto producto)
         {
-            // Validar que el stock no sea negativo
+            // -----------------------------------------------------
+            // VALIDAR STOCK
+            // -----------------------------------------------------
+
             if (producto.Stock < 0)
             {
                 return BadRequest(new
@@ -54,7 +78,11 @@ namespace MulfordStore.API.Controllers
                 });
             }
 
-            // Validar que el precio sea mayor que cero
+
+            // -----------------------------------------------------
+            // VALIDAR PRECIO
+            // -----------------------------------------------------
+
             if (producto.Precio <= 0)
             {
                 return BadRequest(new
@@ -63,9 +91,15 @@ namespace MulfordStore.API.Controllers
                 });
             }
 
+
+            // -----------------------------------------------------
+            // GUARDAR PRODUCTO
+            // -----------------------------------------------------
+
             _context.Productos.Add(producto);
 
             await _context.SaveChangesAsync();
+
 
             return CreatedAtAction(
                 nameof(GetProducto),
@@ -74,20 +108,37 @@ namespace MulfordStore.API.Controllers
             );
         }
 
+
+        // =========================================================
+        // ACTUALIZAR PRODUCTO
         // PUT: api/Productos/1
+        // SOLO ADMINISTRADOR
+        // =========================================================
+
         [HttpPut("{id}")]
         [Authorize(Roles = "Administrador")]
-        public async Task<IActionResult> PutProducto(int id, Producto producto)
+        public async Task<IActionResult> PutProducto(
+            int id,
+            Producto producto)
         {
+            // -----------------------------------------------------
+            // VALIDAR ID
+            // -----------------------------------------------------
+
             if (id != producto.Id)
             {
                 return BadRequest(new
                 {
-                    mensaje = "El ID de la URL no coincide con el ID del producto."
+                    mensaje =
+                        "El ID de la URL no coincide con el ID del producto."
                 });
             }
 
-            // Validar que el stock no sea negativo
+
+            // -----------------------------------------------------
+            // VALIDAR STOCK
+            // -----------------------------------------------------
+
             if (producto.Stock < 0)
             {
                 return BadRequest(new
@@ -96,7 +147,11 @@ namespace MulfordStore.API.Controllers
                 });
             }
 
-            // Validar que el precio sea mayor que cero
+
+            // -----------------------------------------------------
+            // VALIDAR PRECIO
+            // -----------------------------------------------------
+
             if (producto.Precio <= 0)
             {
                 return BadRequest(new
@@ -105,7 +160,14 @@ namespace MulfordStore.API.Controllers
                 });
             }
 
-            _context.Entry(producto).State = EntityState.Modified;
+
+            // -----------------------------------------------------
+            // ACTUALIZAR PRODUCTO
+            // -----------------------------------------------------
+
+            _context.Entry(producto).State =
+                EntityState.Modified;
+
 
             try
             {
@@ -115,37 +177,59 @@ namespace MulfordStore.API.Controllers
             {
                 if (!ProductoExiste(id))
                 {
-                    return NotFound();
+                    return NotFound(new
+                    {
+                        mensaje = "El producto no existe."
+                    });
                 }
 
                 throw;
             }
 
+
             return NoContent();
         }
 
+
+        // =========================================================
+        // ELIMINAR PRODUCTO
         // DELETE: api/Productos/1
+        // SOLO ADMINISTRADOR
+        // =========================================================
+
         [HttpDelete("{id}")]
         [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> DeleteProducto(int id)
         {
-            var producto = await _context.Productos.FindAsync(id);
+            var producto = await _context.Productos
+                .FindAsync(id);
 
             if (producto == null)
             {
-                return NotFound();
+                return NotFound(new
+                {
+                    mensaje = "El producto no existe."
+                });
             }
+
 
             _context.Productos.Remove(producto);
 
             await _context.SaveChangesAsync();
 
+
             return NoContent();
         }
 
+
+        // =========================================================
+        // VERIFICAR SI EXISTE PRODUCTO
+        // =========================================================
+
         private bool ProductoExiste(int id)
         {
-            return _context.Productos.Any(e => e.Id == id);
+            return _context.Productos
+                .Any(e => e.Id == id);
         }
     }
 }

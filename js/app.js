@@ -40,3 +40,116 @@ window.addEventListener("resize", () => {
     }
 
 });
+
+
+/* ===========================
+   MODAL FINALIZAR COMPRA
+=========================== */
+
+const checkoutModal = document.getElementById("checkout-modal");
+const finalizarCompra = document.getElementById("finalizar-compra");
+const cerrarCheckout = document.getElementById("cerrar-checkout");
+const cancelarCheckout = document.getElementById("cancelar-checkout");
+const checkoutOverlay = document.querySelector(".checkout-overlay");
+
+
+/* ===========================
+   OCULTAR MODAL AL CARGAR
+=========================== */
+
+if (checkoutModal) {
+    checkoutModal.hidden = true;
+}
+
+
+/* ===========================
+   ABRIR FINALIZAR COMPRA
+=========================== */
+
+if (finalizarCompra && checkoutModal) {
+
+    finalizarCompra.addEventListener("click", () => {
+
+        checkoutModal.hidden = false;
+
+        document.body.classList.add("checkout-abierto");
+
+    });
+
+}
+
+
+/* ===========================
+   CERRAR MODAL
+=========================== */
+
+function cerrarModalCheckout() {
+
+    if (!checkoutModal) return;
+
+    checkoutModal.hidden = true;
+
+    document.body.classList.remove("checkout-abierto");
+
+}
+
+
+/* ===========================
+   BOTÓN X
+=========================== */
+
+if (cerrarCheckout) {
+
+    cerrarCheckout.addEventListener("click", () => {
+
+        cerrarModalCheckout();
+
+    });
+
+}
+
+
+/* ===========================
+   VOLVER AL CARRITO
+=========================== */
+
+if (cancelarCheckout) {
+
+    cancelarCheckout.addEventListener("click", () => {
+
+        cerrarModalCheckout();
+
+    });
+
+}
+
+
+/* ===========================
+   CERRAR HACIENDO CLIC
+   EN EL FONDO
+=========================== */
+
+if (checkoutOverlay) {
+
+    checkoutOverlay.addEventListener("click", () => {
+
+        cerrarModalCheckout();
+
+    });
+
+}
+
+
+/* ===========================
+   CERRAR CON ESC
+=========================== */
+
+document.addEventListener("keydown", (event) => {
+
+    if (event.key === "Escape") {
+
+        cerrarModalCheckout();
+
+    }
+
+});

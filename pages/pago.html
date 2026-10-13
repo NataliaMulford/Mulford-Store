@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Pago | Mulford Store</title>
+
+
+    <!-- ESTILOS -->
+
+    <link
+        rel="stylesheet"
+        href="../css/reset.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/variables.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/base.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/layout.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/components.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/responsive.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ===========================
+         PÁGINA DE PAGO
+    ============================ -->
+
+    <main class="payment-page">
+
+
+        <section class="payment-container">
+
+
+            <!-- ===========================
+                 ENCABEZADO
+            ============================ -->
+
+            <header class="payment-header">
+
+                <span class="payment-brand">
+                    Mulford Store
+                </span>
+
+                <h1>
+                    Realizar pago
+                </h1>
+
+                <p>
+                    Completa el proceso para confirmar tu pedido.
+                </p>
+
+            </header>
+
+
+            <!-- ===========================
+                 RESUMEN DEL PEDIDO
+            ============================ -->
+
+            <section class="payment-card">
+
+                <h2>
+                    Resumen del pedido
+                </h2>
+
+
+                <div id="payment-order-info">
+
+
+                    <p>
+
+                        <strong>
+                            Número de pedido:
+                        </strong>
+
+                        <span id="payment-order-id">
+                            Se asignará al confirmar
+                        </span>
+
+                    </p>
+
+
+                    <p>
+
+                        <strong>
+                            Total:
+                        </strong>
+
+                        <span id="payment-order-total">
+                            $0
+                        </span>
+
+                    </p>
+
+
+                    <p>
+
+                        <strong>
+                            Método de pago:
+                        </strong>
+
+                        <span id="payment-method">
+                            —
+                        </span>
+
+                    </p>
+
+
+                </div>
+
+            </section>
+
+
+            <!-- ===========================
+                 INFORMACIÓN DEL PAGO
+            ============================ -->
+
+            <section class="payment-card">
+
+                <h2>
+                    Información de pago
+                </h2>
+
+
+                <div id="payment-method-content">
+
+                    <p>
+                        Selecciona un método de pago para continuar.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- ===========================
+                 BOTONES
+            ============================ -->
+
+            <div class="payment-actions">
+
+
+                <button
+                    type="button"
+                    id="volver-checkout"
+                    class="btn btn-secondary"
+                >
+                    Volver
+                </button>
+
+
+                <button
+                    type="button"
+                    id="confirmar-pago"
+                    class="btn btn-primary"
+                >
+                    Confirmar pedido
+                </button>
+
+
+            </div>
+
+
+            <!-- ===========================
+                 PEDIDO EXITOSO
+            ============================ -->
+
+            <section
+                id="pedido-exitoso"
+                class="pedido-exitoso"
+                style="display: none;"
+            >
+
+
+                <div class="pedido-exitoso-icono">
+                    ✓
+                </div>
+
+
+                <h2>
+                    ¡Pedido realizado!
+                </h2>
+
+
+                <p>
+                    Tu pedido fue registrado correctamente.
+                </p>
+
+
+                <div class="pedido-exitoso-info">
+
+
+                    <p>
+
+                        <strong>
+                            Número de pedido:
+                        </strong>
+
+                        <span id="pedido-exitoso-id">
+                        </span>
+
+                    </p>
+
+
+                    <p>
+
+                        <strong>
+                            Total:
+                        </strong>
+
+                        <span id="pedido-exitoso-total">
+                        </span>
+
+                    </p>
+
+
+                    <p>
+
+                        <strong>
+                            Método de pago:
+                        </strong>
+
+                        <span id="pedido-exitoso-metodo">
+                        </span>
+
+                    </p>
+
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="volver-tienda"
+                    class="btn btn-primary"
+                >
+                    Volver a la tienda
+                </button>
+
+
+            </section>
+
+
+        </section>
+
+
+    </main>
+
+
+    <!-- ===========================
+         JAVASCRIPT
+    ============================ -->
+
+    <script src="../js/pago.js"></script>
+
+
+</body>
+
+</html>

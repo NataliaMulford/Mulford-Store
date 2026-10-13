@@ -11,26 +11,33 @@
     <meta name="description"
         content="Mulford Store - Tienda de maquillaje, cuidado facial y accesorios Trendy con envíos a toda Colombia.">
 
-    <meta name="keywords" content="maquillaje, Trendy, belleza, cosméticos, labiales, bases, Colombia">
+    <meta name="keywords"
+        content="maquillaje, Trendy, belleza, cosméticos, labiales, bases, Colombia">
 
     <meta name="author" content="Mulford Store">
 
     <link rel="icon" href="favicon.ico">
 
+    <!-- CSS -->
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/variables.css">
     <link rel="stylesheet" href="./css/base.css">
     <link rel="stylesheet" href="./css/layout.css">
     <link rel="stylesheet" href="./css/components.css">
     <link rel="stylesheet" href="./css/responsive.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 
+
 <body>
 
+
     <!-- =========================
-             HEADER
+         HEADER
     ========================== -->
 
     <header class="header">
@@ -39,34 +46,92 @@
 
             <nav class="navbar">
 
-                <a href="#inicio" class="logo">
-                    <img src="./assets/logos/logo-mulford.png" alt="Logo Mulford">
+                <!-- LOGO -->
+
+                <a href="index.html" class="logo">
+
+                    <img
+                        src="./assets/logos/logo-mulford.png"
+                        alt="Logo Mulford Store">
+
                 </a>
+
+
+                <!-- MENÚ -->
+
                 <ul class="nav-links" id="nav-menu">
 
-                    <li><a href="index.html">Inicio</a></li>
+                    <li>
+                        <a href="index.html">
+                            Inicio
+                        </a>
+                    </li>
 
-                    <li><a href="categorias.html">Categorías</a></li>
+                    <li>
+                        <a href="categorias.html">
+                            Categorías
+                        </a>
+                    </li>
 
-                    <li><a href="catalogo.html">Catálogo</a></li>
+                    <li>
+                        <a href="catalogo.html">
+                            Catálogo
+                        </a>
+                    </li>
 
-                    <li><a href="#contacto">Contacto</a></li>
+                    <li>
+                        <a href="#contacto">
+                            Contacto
+                        </a>
+                    </li>
 
                 </ul>
 
+
+                <!-- ACCIONES -->
+
                 <div class="nav-actions">
 
-                    <button type="button" class="icon-btn" aria-label="Buscar">
+                    <!-- BUSCAR -->
+
+                    <button
+                        type="button"
+                        class="icon-btn"
+                        aria-label="Buscar">
+
                         <i class="fa-solid fa-magnifying-glass"></i>
+
                     </button>
 
-                    <button type="button" class="icon-btn carrito-btn" aria-label="Carrito">
+
+                    <!-- CARRITO -->
+
+                    <button
+                        type="button"
+                        class="icon-btn carrito-btn"
+                        aria-label="Abrir carrito">
+
                         <i class="fa-solid fa-cart-shopping"></i>
-                        <span id="contador-carrito" class="contador-carrito">0</span>
+
+                        <span
+                            id="contador-carrito"
+                            class="contador-carrito">
+                            0
+                        </span>
+
                     </button>
 
-                    <button type="button" class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+
+                    <!-- MENÚ MÓVIL -->
+
+                    <button
+                        type="button"
+                        class="menu-toggle"
+                        id="menu-toggle"
+                        aria-label="Abrir menú">
+
                         <i class="fa-solid fa-bars"></i>
+
                     </button>
 
                 </div>
@@ -77,14 +142,16 @@
 
     </header>
 
+
     <!-- =========================
-              MAIN
+         MAIN
     ========================== -->
 
     <main id="inicio">
 
+
         <!-- =========================
-                 HERO
+             HERO
         ========================== -->
 
         <section class="hero">
@@ -93,30 +160,49 @@
 
                 <div class="hero-content">
 
+
                     <span class="hero-badge">
                         ✨ BELLEZA QUE REFLEJA TU ESENCIA
                     </span>
+
 
                     <h1>
                         Descubre productos Trendy para resaltar tu belleza.
                     </h1>
 
+
                     <p>
-                        Maquillaje, cuidado facial y accesorios cuidadosamente seleccionados para ofrecer calidad,
-                        estilo y confianza en cada compra.
+                        Maquillaje, cuidado facial y accesorios cuidadosamente
+                        seleccionados para ofrecer calidad, estilo y confianza
+                        en cada compra.
                     </p>
+
+
+                    <!-- BOTONES -->
 
                     <div class="hero-buttons">
 
-                        <a href="#productos" class="btn btn-primary">
+                        <a
+                            href="#productos"
+                            class="btn btn-primary">
+
                             Comprar ahora
+
                         </a>
 
-                        <a href="catalogo.html" class="btn btn-secondary">
+
+                        <a
+                            href="catalogo.html"
+                            class="btn btn-secondary">
+
                             Ver catálogo
+
                         </a>
 
                     </div>
+
+
+                    <!-- INFORMACIÓN -->
 
                     <div class="hero-info">
 
@@ -132,58 +218,125 @@
 
                 </div>
 
+
+                <!-- IMAGEN -->
+
                 <div class="hero-image">
 
-                    <img src="./assets/images/hero-modelo.png" alt="Modelo utilizando productos Mulford Store">
+                    <img
+                        src="./assets/images/hero-modelo.png"
+                        alt="Modelo utilizando productos Mulford Store">
 
                 </div>
 
             </div>
 
         </section>
+
+
         <!-- =========================
              CATEGORÍAS
         ========================== -->
 
-        <section class="categories" id="categorias">
+        <section
+            class="categories"
+            id="categorias">
 
             <div class="container">
 
+
                 <div class="section-title">
 
-                    <span>Categorías</span>
+                    <span>
+                        Categorías
+                    </span>
 
                     <h2>
                         Encuentra lo que buscas
                     </h2>
 
                     <p>
-                        Explora nuestras categorías favoritas y descubre los productos ideales para tu rutina de
-                        belleza.
+                        Explora nuestras categorías favoritas y descubre
+                        los productos ideales para tu rutina de belleza.
                     </p>
 
                 </div>
+
+
+                <!-- CATEGORÍAS -->
 
                 <div class="categories-grid">
 
-                    <a href="catalogo.html?categoria=Labios" class="category-card">
-                        <img src="./assets/images/icons/labiales.png" alt="Labiales" loading="lazy">
-                        <h3>Labiales</h3>
+
+                    <!-- LABIOS -->
+
+                    <a
+                        href="catalogo.html?categoria=Labios"
+                        class="category-card">
+
+                        <img
+                            src="./assets/images/icons/labiales.png"
+                            alt="Labiales"
+                            loading="lazy">
+
+                        <h3>
+                            Labiales
+                        </h3>
+
                     </a>
 
-                    <a href="catalogo.html?categoria=Bases" class="category-card">
-                        <img src="./assets/images/icons/rostro.png" alt="Productos para el rostro" loading="lazy">
-                        <h3>Rostro</h3>
+
+                    <!-- ROSTRO -->
+
+                    <a
+                        href="catalogo.html?categoria=Bases"
+                        class="category-card">
+
+                        <img
+                            src="./assets/images/icons/rostro.png"
+                            alt="Productos para el rostro"
+                            loading="lazy">
+
+                        <h3>
+                            Rostro
+                        </h3>
+
                     </a>
 
-                    <a href="catalogo.html?categoria=Ojos" class="category-card">
-                        <img src="./assets/images/icons/ojos.png" alt="Productos para los ojos" loading="lazy">
-                        <h3>Ojos</h3>
+
+                    <!-- OJOS -->
+
+                    <a
+                        href="catalogo.html?categoria=Ojos"
+                        class="category-card">
+
+                        <img
+                            src="./assets/images/icons/ojos.png"
+                            alt="Productos para los ojos"
+                            loading="lazy">
+
+                        <h3>
+                            Ojos
+                        </h3>
+
                     </a>
 
-                    <a href="catalogo.html?categoria=Accesorios" class="category-card">
-                        <img src="./assets/images/icons/accesorios.png" alt="Accesorios de belleza" loading="lazy">
-                        <h3>Accesorios</h3>
+
+                    <!-- ACCESORIOS -->
+
+                    <a
+                        href="catalogo.html?categoria=Accesorios"
+                        class="category-card">
+
+                        <img
+                            src="./assets/images/icons/accesorios.png"
+                            alt="Accesorios de belleza"
+                            loading="lazy">
+
+                        <h3>
+                            Accesorios
+                        </h3>
+
                     </a>
 
                 </div>
@@ -194,30 +347,42 @@
 
 
         <!-- =========================
-         CATÁLOGO
-========================== -->
+             CATÁLOGO
+        ========================== -->
 
-        <section class="catalogo-preview" id="productos">
+        <section
+            class="catalogo-preview"
+            id="productos">
 
             <div class="container">
 
+
                 <div class="section-title">
 
-                    <span>Nuestro catálogo</span>
+                    <span>
+                        Nuestro catálogo
+                    </span>
 
-                    <h2>Descubre toda nuestra colección</h2>
+                    <h2>
+                        Descubre toda nuestra colección
+                    </h2>
 
                     <p>
-                        Explora más de 100 productos Trendy de maquillaje, cuidado facial y accesorios para resaltar tu
-                        belleza.
+                        Explora más de 100 productos Trendy de maquillaje,
+                        cuidado facial y accesorios para resaltar tu belleza.
                     </p>
 
                 </div>
 
+
                 <div class="catalogo-preview-content">
 
-                    <a href="catalogo.html" class="btn btn-primary">
+                    <a
+                        href="catalogo.html"
+                        class="btn btn-primary">
+
                         Ver catálogo completo
+
                     </a>
 
                 </div>
@@ -225,78 +390,117 @@
             </div>
 
         </section>
-        ──────────────────────────
-        <!-- =========================
-             FOOTER
-        ========================== -->
 
     </main>
 
-    <footer class="footer" id="contacto">
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer
+        class="footer"
+        id="contacto">
 
         <div class="container">
 
+
             <div class="footer-content">
 
-                <!-- Marca -->
+
+                <!-- MARCA -->
 
                 <div class="footer-brand">
 
-                    <img src="./assets/logos/logo-mulford.png" alt="Logo Mulford">
+                    <img
+                        src="./assets/logos/logo-mulford.png"
+                        alt="Logo Mulford Store">
 
                     <p>
-                        Tu tienda de maquillaje, cuidado facial y accesorios de belleza con productos originales Trendy.
+                        Tu tienda de maquillaje, cuidado facial y accesorios
+                        de belleza con productos originales Trendy.
                     </p>
 
                 </div>
 
-                <!-- Enlaces -->
+
+                <!-- ENLACES -->
 
                 <div class="footer-links">
 
-                    <h3>Enlaces</h3>
+                    <h3>
+                        Enlaces
+                    </h3>
 
                     <ul>
 
                         <li>
-                            <a href="#inicio">Inicio</a>
+                            <a href="#inicio">
+                                Inicio
+                            </a>
                         </li>
 
                         <li>
-                            <a href="#categorias">Categorías</a>
+                            <a href="#categorias">
+                                Categorías
+                            </a>
                         </li>
 
                         <li>
-                            <a href="#productos">Productos</a>
+                            <a href="catalogo.html">
+                                Catálogo
+                            </a>
                         </li>
 
                         <li>
-                            <a href="#contacto">Contacto</a>
+                            <a href="#contacto">
+                                Contacto
+                            </a>
                         </li>
 
                     </ul>
 
                 </div>
 
-                <!-- Contacto -->
+
+                <!-- CONTACTO -->
 
                 <div class="footer-contact">
 
-                    <h3>Contacto</h3>
-
-                    <p>Bogotá, Colombia</p>
+                    <h3>
+                        Contacto
+                    </h3>
 
                     <p>
-                        <a href="https://wa.me/573001234567">
+                        Bogotá, Colombia
+                    </p>
+
+
+                    <p>
+
+                        <a href="https://wa.me/573001234567"
+                            target="_blank"
+                            rel="noopener noreferrer">
+
                             WhatsApp
+
                         </a>
+
                     </p>
 
+
                     <p>
-                        <a href="https://instagram.com/mulfordstore">
+
+                        <a href="https://instagram.com/mulfordstore"
+                            target="_blank"
+                            rel="noopener noreferrer">
+
                             Instagram
+
                         </a>
+
                     </p>
+
 
                     <p>
                         contacto@mulfordstore.com
@@ -306,10 +510,14 @@
 
             </div>
 
+
+            <!-- COPYRIGHT -->
+
             <div class="footer-copy">
 
                 <p>
-                    © 2026 Mulford Store. Todos los derechos reservados.
+                    © 2026 Mulford Store.
+                    Todos los derechos reservados.
                 </p>
 
             </div>
@@ -317,19 +525,44 @@
         </div>
 
     </footer>
-    <aside id="carrito-panel" class="carrito-panel">
+
+
+    <!-- =========================
+         CARRITO
+    ========================== -->
+
+    <aside
+        id="carrito-panel"
+        class="carrito-panel">
+
+
+        <!-- HEADER CARRITO -->
 
         <div class="carrito-header">
 
-            <h2>Mi carrito</h2>
+            <h2>
+                Mi carrito
+            </h2>
 
-            <button id="cerrar-carrito" class="cerrar-carrito">
+
+            <button
+                type="button"
+                id="cerrar-carrito"
+                class="cerrar-carrito"
+                aria-label="Cerrar carrito">
+
                 <i class="fa-solid fa-xmark"></i>
+
             </button>
 
         </div>
 
-        <div id="lista-carrito" class="lista-carrito">
+
+        <!-- PRODUCTOS DEL CARRITO -->
+
+        <div
+            id="lista-carrito"
+            class="lista-carrito">
 
             <p class="carrito-vacio">
                 Tu carrito está vacío.
@@ -337,22 +570,51 @@
 
         </div>
 
+
+        <!-- FOOTER CARRITO -->
+
         <div class="carrito-footer">
 
-            <h3>Total:
-                <span id="total-carrito">$0</span>
+            <h3>
+
+                Total:
+
+                <span id="total-carrito">
+                    $0
+                </span>
+
             </h3>
 
-            <button id="vaciar-carrito" class="btn btn-secondary">
+
+            <button
+                type="button"
+                id="vaciar-carrito"
+                class="btn btn-secondary">
+
                 Vaciar carrito
+
             </button>
 
-            <button id="finalizar-compra" class="btn btn-primary">
+
+            <button
+                type="button"
+                id="finalizar-compra"
+                class="btn btn-primary">
+
                 Finalizar compra
+
             </button>
+
         </div>
 
     </aside>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script src="./js/app.js"></script>
 
     <script src="./js/productos.js"></script>
 

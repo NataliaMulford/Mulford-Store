@@ -12,6 +12,8 @@ namespace MulfordStore.API.Models
 
         public string Ciudad { get; set; } = string.Empty;
 
+        public string MetodoPago { get; set; } = string.Empty;
+
         public decimal Total { get; set; }
 
         public string Estado { get; set; } = "Pendiente";

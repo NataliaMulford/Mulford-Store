@@ -4,34 +4,55 @@
 <head>
 
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Mulford Store</title>
+    <title>Mulford Store | Catálogo</title>
 
     <meta name="description"
-        content="Mulford Store - Tienda de maquillaje, cuidado facial y accesorios Trendy con envíos a toda Colombia.">
+        content="Mulford Store - Catálogo de maquillaje, cuidado facial y accesorios Trendy con envíos a toda Colombia.">
 
-    <meta name="keywords" content="maquillaje, Trendy, belleza, cosméticos, labiales, bases, Colombia">
+    <meta name="keywords"
+        content="maquillaje, Trendy, belleza, cosméticos, labiales, bases, Colombia">
 
     <meta name="author" content="Mulford Store">
 
     <link rel="icon" href="favicon.ico">
 
+
+    <!-- =========================
+         CSS
+    ========================== -->
+
     <link rel="stylesheet" href="./css/reset.css">
+
     <link rel="stylesheet" href="./css/variables.css">
+
     <link rel="stylesheet" href="./css/base.css">
+
     <link rel="stylesheet" href="./css/layout.css">
+
     <link rel="stylesheet" href="./css/components.css">
+
     <link rel="stylesheet" href="./css/responsive.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+
+    <!-- FONT AWESOME -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
 
 </head>
 
+
 <body>
 
-    <!-- =========================
-             HEADER
-    ========================== -->
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
 
     <header class="header">
 
@@ -39,35 +60,99 @@
 
             <nav class="navbar">
 
+
+                <!-- LOGO -->
+
                 <a href="index.html" class="logo">
-                    <img src="./assets/logos/logo-mulford.png" alt="Logo Mulford">
+
+                    <img
+                        src="./assets/logos/logo-mulford.png"
+                        alt="Logo Mulford Store"
+                    >
+
                 </a>
 
 
+                <!-- MENÚ -->
+
                 <ul class="nav-links" id="nav-menu">
 
-                    <li><a href="index.html">Inicio</a></li>
+                    <li>
+                        <a href="index.html">
+                            Inicio
+                        </a>
+                    </li>
 
-                    <li><a href="categorias.html">Categorías</a></li>
+                    <li>
+                        <a href="categorias.html">
+                            Categorías
+                        </a>
+                    </li>
 
-                    <li><a href="catalogo.html">Catálogo</a></li>
+                    <li>
+                        <a href="catalogo.html">
+                            Catálogo
+                        </a>
+                    </li>
 
-                    <li><a href="index.html#contacto">Contacto</a></li>
+                    <li>
+                        <a href="index.html#contacto">
+                            Contacto
+                        </a>
+                    </li>
 
                 </ul>
+
+
+                <!-- ACCIONES -->
+
                 <div class="nav-actions">
 
-                    <button type="button" class="icon-btn" aria-label="Buscar">
+
+                    <!-- BUSCAR -->
+
+                    <button
+                        type="button"
+                        class="icon-btn"
+                        aria-label="Buscar"
+                    >
+
                         <i class="fa-solid fa-magnifying-glass"></i>
+
                     </button>
 
-                    <button type="button" class="icon-btn carrito-btn" aria-label="Carrito">
+
+                    <!-- CARRITO -->
+
+                    <button
+                        type="button"
+                        class="icon-btn carrito-btn"
+                        aria-label="Abrir carrito"
+                    >
+
                         <i class="fa-solid fa-cart-shopping"></i>
-                        <span id="contador-carrito" class="contador-carrito">0</span>
+
+                        <span
+                            id="contador-carrito"
+                            class="contador-carrito"
+                        >
+                            0
+                        </span>
+
                     </button>
 
-                    <button type="button" class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+
+                    <!-- MENÚ MÓVIL -->
+
+                    <button
+                        type="button"
+                        class="menu-toggle"
+                        id="menu-toggle"
+                        aria-label="Abrir menú"
+                    >
+
                         <i class="fa-solid fa-bars"></i>
+
                     </button>
 
                 </div>
@@ -78,134 +163,297 @@
 
     </header>
 
-    <!-- =========================
-              MAIN
-    ========================== -->
+
+
+    <!-- =====================================================
+         CONTENIDO PRINCIPAL
+    ====================================================== -->
 
     <main id="inicio">
 
 
-
-        <!-- =========================
+        <!-- =================================================
              PRODUCTOS
-        ========================== -->
+        ================================================== -->
 
-        <section class="products" id="productos">
+        <section
+            class="products"
+            id="productos"
+        >
 
             <div class="container">
 
+
+                <!-- TÍTULO -->
+
                 <div class="section-title">
 
-                    <span>Más vendidos</span>
+                    <span>
+                        Más vendidos
+                    </span>
 
                     <h2>
                         Productos destacados
                     </h2>
 
                     <p>
-                        Descubre la selección favorita de nuestras clientes con la mejor calidad y tendencia.
+                        Descubre la selección favorita de nuestras
+                        clientes con la mejor calidad y tendencia.
                     </p>
 
                 </div>
 
 
+                <!-- =================================================
+                     BUSCADOR
+                ================================================== -->
+
                 <div class="search-container">
-                    <input type="text" id="buscador" class="search-input" placeholder="Buscar productos..."
-                        autocomplete="off">
+
+                    <input
+                        type="text"
+                        id="buscador"
+                        class="search-input"
+                        placeholder="Buscar productos..."
+                        autocomplete="off"
+                    >
+
                 </div>
+
+
+                <!-- =================================================
+                     FILTROS
+                ================================================== -->
 
                 <div class="filters">
 
-                    <button class="filter-btn active" data-category="Todos">Todos</button>
-                    <button class="filter-btn" data-category="Bases">Bases</button>
-                    <button class="filter-btn" data-category="Correctores">Correctores</button>
-                    <button class="filter-btn" data-category="Polvos">Polvos</button>
-                    <button class="filter-btn" data-category="Iluminadores">Iluminadores</button>
-                    <button class="filter-btn" data-category="Contornos">Contornos</button>
-                    <button class="filter-btn" data-category="Rubores">Rubores</button>
-                    <button class="filter-btn" data-category="Ojos">Ojos</button>
-                    <button class="filter-btn" data-category="Labios">Labios</button>
-                    <button class="filter-btn" data-category="Mascarillas">Mascarillas</button>
-                    <button class="filter-btn" data-category="Fijadores">Fijadores</button>
-                    <button class="filter-btn" data-category="Accesorios">Accesorios</button>
+
+                    <button
+                        type="button"
+                        class="filter-btn active"
+                        data-category="Todos"
+                    >
+                        Todos
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="filter-btn"
+                        data-category="Bases"
+                    >
+                        Bases
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="filter-btn"
+                        data-category="Correctores"
+                    >
+                        Correctores
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="filter-btn"
+                        data-category="Polvos"
+                    >
+                        Polvos
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="filter-btn"
+                        data-category="Iluminadores"
+                    >
+                        Iluminadores
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="filter-btn"
+                        data-category="Contornos"
+                    >
+                        Contornos
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="filter-btn"
+                        data-category="Rubores"
+                    >
+                        Rubores
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="filter-btn"
+                        data-category="Ojos"
+                    >
+                        Ojos
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="filter-btn"
+                        data-category="Labios"
+                    >
+                        Labios
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="filter-btn"
+                        data-category="Mascarillas"
+                    >
+                        Mascarillas
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="filter-btn"
+                        data-category="Fijadores"
+                    >
+                        Fijadores
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="filter-btn"
+                        data-category="Accesorios"
+                    >
+                        Accesorios
+                    </button>
 
                 </div>
 
-                <div class="products-grid" id="contenedor-productos"></div>
+
+                <!-- =================================================
+                     PRODUCTOS DINÁMICOS
+                ================================================== -->
+
+                <div
+                    class="products-grid"
+                    id="contenedor-productos"
+                ></div>
+
 
             </div>
 
         </section>
-        <!-- =========================
-             FOOTER
-        ========================== -->
+
 
     </main>
 
-    <footer class="footer" id="contacto">
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer
+        class="footer"
+        id="contacto"
+    >
 
         <div class="container">
 
             <div class="footer-content">
 
-                <!-- Marca -->
+
+                <!-- MARCA -->
 
                 <div class="footer-brand">
 
-                    <img src="./assets/logos/logo-mulford.png" alt="Logo Mulford">
+                    <img
+                        src="./assets/logos/logo-mulford.png"
+                        alt="Logo Mulford Store"
+                    >
 
                     <p>
-                        Tu tienda de maquillaje, cuidado facial y accesorios de belleza con productos originales Trendy.
+                        Tu tienda de maquillaje, cuidado facial
+                        y accesorios de belleza con productos
+                        originales Trendy.
                     </p>
 
                 </div>
 
-                <!-- Enlaces -->
+
+                <!-- ENLACES -->
 
                 <div class="footer-links">
 
-                    <h3>Enlaces</h3>
+                    <h3>
+                        Enlaces
+                    </h3>
 
                     <ul>
 
                         <li>
-                            <a href="index.html">Inicio</a>
+                            <a href="index.html">
+                                Inicio
+                            </a>
                         </li>
 
                         <li>
-                            <a href="categorias.html">Categorías</a>
+                            <a href="categorias.html">
+                                Categorías
+                            </a>
                         </li>
 
                         <li>
-                            <a href="catalogo.html">Catálogo</a>
+                            <a href="catalogo.html">
+                                Catálogo
+                            </a>
                         </li>
 
                         <li>
-                            <a href="index.html#contacto">Contacto</a>
+                            <a href="#contacto">
+                                Contacto
+                            </a>
                         </li>
 
                     </ul>
 
                 </div>
 
-                <!-- Contacto -->
+
+                <!-- CONTACTO -->
 
                 <div class="footer-contact">
 
-                    <h3>Contacto</h3>
-
-                    <p>Bogotá, Colombia</p>
+                    <h3>
+                        Contacto
+                    </h3>
 
                     <p>
-                        <a href="https://wa.me/573001234567">
-                            WhatsApp
-                        </a>
+                        Bogotá, Colombia
                     </p>
 
                     <p>
+
+                        <a href="https://wa.me/573001234567">
+                            WhatsApp
+                        </a>
+
+                    </p>
+
+                    <p>
+
                         <a href="https://instagram.com/mulfordstore">
                             Instagram
                         </a>
+
                     </p>
 
                     <p>
@@ -216,10 +464,14 @@
 
             </div>
 
+
+            <!-- COPYRIGHT -->
+
             <div class="footer-copy">
 
                 <p>
-                    © 2026 Mulford Store. Todos los derechos reservados.
+                    © 2026 Mulford Store.
+                    Todos los derechos reservados.
                 </p>
 
             </div>
@@ -227,19 +479,47 @@
         </div>
 
     </footer>
-    <aside id="carrito-panel" class="carrito-panel">
+
+
+
+    <!-- =====================================================
+         CARRITO LATERAL
+    ====================================================== -->
+
+    <aside
+        id="carrito-panel"
+        class="carrito-panel"
+    >
+
+
+        <!-- CABECERA -->
 
         <div class="carrito-header">
 
-            <h2>Mi carrito</h2>
+            <h2>
+                Mi carrito
+            </h2>
 
-            <button id="cerrar-carrito" class="cerrar-carrito">
+            <button
+                type="button"
+                id="cerrar-carrito"
+                class="cerrar-carrito"
+                aria-label="Cerrar carrito"
+            >
+
                 <i class="fa-solid fa-xmark"></i>
+
             </button>
 
         </div>
 
-        <div id="lista-carrito" class="lista-carrito">
+
+        <!-- LISTA -->
+
+        <div
+            id="lista-carrito"
+            class="lista-carrito"
+        >
 
             <p class="carrito-vacio">
                 Tu carrito está vacío.
@@ -247,18 +527,41 @@
 
         </div>
 
+
+        <!-- PIE DEL CARRITO -->
+
         <div class="carrito-footer">
 
-            <h3>Total:
-                <span id="total-carrito">$0</span>
+
+            <h3>
+
+                Total:
+
+                <span id="total-carrito">
+                    $0
+                </span>
+
             </h3>
 
-            <button id="vaciar-carrito" class="btn btn-secondary">
+
+            <button
+                type="button"
+                id="vaciar-carrito"
+                class="btn btn-secondary"
+            >
                 Vaciar carrito
             </button>
 
 
-            <button id="finalizar-compra" type="button" class="btn btn-primary">
+            <!-- IMPORTANTE:
+                 ESTE ID ES NECESARIO
+                 PARA QUE productos.js LO DETECTE -->
+
+            <button
+                type="button"
+                id="finalizar-compra"
+                class="btn btn-primary"
+            >
                 Finalizar compra
             </button>
 
@@ -266,8 +569,507 @@
 
     </aside>
 
+
+
+    <!-- =====================================================
+         MODAL CHECKOUT
+         
+         IMPORTANTE:
+         AQUÍ usamos checkout-modal,
+         NO checkout.
+    ====================================================== -->
+
+    <div
+        id="checkout-modal"
+        class="checkout-modal"
+    >
+
+
+        <!-- FONDO OSCURO -->
+
+        <div class="checkout-overlay"></div>
+
+
+        <!-- CONTENEDOR -->
+
+        <div class="checkout-container">
+
+
+            <!-- BOTÓN CERRAR -->
+
+            <button
+                type="button"
+                id="cerrar-checkout"
+                class="checkout-cerrar"
+                aria-label="Cerrar checkout"
+            >
+                ×
+            </button>
+
+
+            <!-- =================================================
+                 ENCABEZADO
+            ================================================== -->
+
+            <div class="checkout-header">
+
+                <span>
+                    Mulford Store
+                </span>
+
+                <h2>
+                    Finalizar compra
+                </h2>
+
+                <p>
+                    Completa tus datos para realizar tu pedido.
+                </p>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 FORMULARIO
+            ================================================== -->
+
+            <form id="checkout-form">
+
+
+                <!-- =================================================
+                     DATOS DEL CLIENTE
+                ================================================== -->
+
+                <div
+                    id="checkout-datos"
+                    class="checkout-section"
+                >
+
+                    <h3>
+                        Datos del cliente
+                    </h3>
+
+
+                    <div class="form-grid">
+
+
+                        <!-- NOMBRE -->
+
+                        <div class="form-group">
+
+                            <label for="nombre-cliente">
+                                Nombre completo
+                            </label>
+
+                            <input
+                                type="text"
+                                id="nombre-cliente"
+                                name="nombre"
+                                placeholder="Tu nombre completo"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- TELÉFONO -->
+
+                        <div class="form-group">
+
+                            <label for="telefono">
+                                Teléfono
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="telefono"
+                                name="telefono"
+                                placeholder="300 000 0000"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- DIRECCIÓN -->
+
+                        <div class="form-group">
+
+                            <label for="direccion">
+                                Dirección
+                            </label>
+
+                            <input
+                                type="text"
+                                id="direccion"
+                                name="direccion"
+                                placeholder="Calle, carrera, número..."
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- CIUDAD -->
+
+                        <div class="form-group">
+
+                            <label for="ciudad">
+                                Ciudad
+                            </label>
+
+                            <input
+                                type="text"
+                                id="ciudad"
+                                name="ciudad"
+                                placeholder="Bogotá"
+                                required
+                            >
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     RESUMEN DEL PEDIDO
+                ================================================== -->
+
+                <div
+                    id="checkout-resumen-section"
+                    class="checkout-section"
+                >
+
+                    <h3>
+                        Resumen del pedido
+                    </h3>
+
+
+                    <div
+                        id="checkout-resumen"
+                        class="checkout-resumen"
+                    ></div>
+
+
+                    <div class="checkout-total">
+
+                        <span>
+                            Total
+                        </span>
+
+                        <strong id="checkout-total">
+                            $0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     MÉTODO DE PAGO
+                ================================================== -->
+
+                <div
+                    id="checkout-metodo-section"
+                    class="checkout-section"
+                >
+
+                    <h3>
+                        Método de pago
+                    </h3>
+
+
+                    <div class="payment-options">
+
+
+                        <!-- NEQUI -->
+
+                        <label class="payment-option">
+
+                            <input
+                                type="radio"
+                                name="metodoPago"
+                                value="nequi"
+                                required
+                            >
+
+                            <span class="payment-content">
+
+                                <strong>
+                                    Nequi
+                                </strong>
+
+                                <small>
+                                    Pago mediante Nequi
+                                </small>
+
+                            </span>
+
+                        </label>
+
+
+                        <!-- BRE-B -->
+
+                        <label class="payment-option">
+
+                            <input
+                                type="radio"
+                                name="metodoPago"
+                                value="bre-b"
+                            >
+
+                            <span class="payment-content">
+
+                                <strong>
+                                    Bre-B
+                                </strong>
+
+                                <small>
+                                    Pago mediante Bre-B
+                                </small>
+
+                            </span>
+
+                        </label>
+
+
+                        <!-- CONTRAENTREGA -->
+
+                        <label class="payment-option">
+
+                            <input
+                                type="radio"
+                                name="metodoPago"
+                                value="contraentrega"
+                            >
+
+                            <span class="payment-content">
+
+                                <strong>
+                                    Pago contraentrega
+                                </strong>
+
+                                <small>
+                                    Pagas cuando recibes tu pedido
+                                </small>
+
+                            </span>
+
+                        </label>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     PASO DE PAGO
+                     
+                     COMIENZA OCULTO
+                ================================================== -->
+
+                <div
+                    id="payment-step"
+                    class="checkout-section payment-step"
+                    style="display: none;"
+                >
+
+
+                    <h3>
+                        Realizar pago
+                    </h3>
+
+
+                    <!-- CONTENIDO DINÁMICO -->
+
+                    <div id="payment-content">
+
+                        <!--
+                            productos.js colocará aquí
+                            la información de Nequi,
+                            Bre-B o contraentrega.
+                        -->
+
+                    </div>
+
+
+                    <!-- TOTAL -->
+
+                    <div class="payment-total">
+
+                        <span>
+                            Total a pagar
+                        </span>
+
+                        <strong id="payment-total">
+                            $0
+                        </strong>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         PEDIDO EXITOSO
+                    ================================================== -->
+
+                    <div
+                        id="pedido-exitoso"
+                        class="pedido-exitoso"
+                        style="display: none;"
+                    >
+
+
+                        <div class="pedido-exitoso-icono">
+                            ✓
+                        </div>
+
+
+                        <h3>
+                            ¡Pedido realizado!
+                        </h3>
+
+
+                        <p>
+                            Tu pedido fue registrado correctamente.
+                        </p>
+
+
+                        <div class="pedido-exitoso-info">
+
+
+                            <p>
+
+                                <strong>
+                                    Número de pedido:
+                                </strong>
+
+                                <span id="pedido-exitoso-id"></span>
+
+                            </p>
+
+
+                            <p>
+
+                                <strong>
+                                    Total:
+                                </strong>
+
+                                <span id="pedido-exitoso-total"></span>
+
+                            </p>
+
+
+                            <p>
+
+                                <strong>
+                                    Método de pago:
+                                </strong>
+
+                                <span id="pedido-exitoso-metodo"></span>
+
+                            </p>
+
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            id="cerrar-pedido-exitoso"
+                            class="btn-checkout-primary"
+                        >
+                            Finalizar
+                        </button>
+
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         BOTONES DEL PASO DE PAGO
+                    ================================================== -->
+
+                    <div class="payment-actions">
+
+
+                        <button
+                            type="button"
+                            id="volver-metodo-pago"
+                            class="btn-checkout-secondary"
+                        >
+                            Cambiar método
+                        </button>
+
+
+                        <button
+                            type="button"
+                            id="confirmar-pago"
+                            class="btn-checkout-primary"
+                        >
+                            Confirmar pedido
+                        </button>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     BOTONES DEL PRIMER PASO
+                ================================================== -->
+
+                <div class="checkout-actions">
+
+
+                    <button
+                        type="button"
+                        id="cancelar-checkout"
+                        class="btn-checkout-secondary"
+                    >
+                        Volver al carrito
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn-checkout-primary"
+                    >
+                        Continuar al pago
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
     <script src="./js/app.js"></script>
+
     <script src="./js/productos.js"></script>
+
 
 </body>
 
