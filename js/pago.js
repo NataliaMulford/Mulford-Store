@@ -266,140 +266,70 @@ document.addEventListener("DOMContentLoaded", () => {
                     );
 
 
+
+
                     /* ===========================
-                       CREAR PEDIDO
+                       CREAR PEDIDO 
                     =========================== */
 
-                    const respuestaPedido =
-                        await fetch(
-                            "http://localhost:5146/api/Pedidos",
-                            {
-                                method: "POST",
+                    console.log("CARRITO REAL:", carrito);
 
-                                headers: {
-                                    "Content-Type":
-                                        "application/json"
-                                },
+                    const productosPedido = carrito.map(item => ({
+                        productoId: Number(item.id),
+                        cantidad: Number(item.cantidad)
+                    }));
 
-                                body: JSON.stringify({
+                    console.log("DATOS QUE SE ENVIARÁN:", productosPedido);
 
-                                    nombreCliente:
-                                        checkoutData.nombreCliente,
-
-                                    telefono:
-                                        checkoutData.telefono,
-
-                                    direccion:
-                                        checkoutData.direccion,
-
-                                    ciudad:
-                                        checkoutData.ciudad,
-
-                                    metodoPago:
-                                        checkoutData.metodoPago,
-
-                                    total:
-                                        totalCompra
-
-                                })
-                            }
-                        );
-
-
-                    console.log(
-                        "RESPUESTA PEDIDO:",
-                        respuestaPedido.status
-                    );
-
-
-                    if (!respuestaPedido.ok) {
-
+                    if (
+                        productosPedido.some(
+                            item =>
+                                !Number.isInteger(item.productoId) ||
+                                item.productoId <= 0 ||
+                                !Number.isInteger(item.cantidad) ||
+                                item.cantidad <= 0
+                        )
+                    ) {
                         throw new Error(
-                            "Error al crear el pedido. HTTP " +
-                            respuestaPedido.status
+                            "El carrito contiene productos o cantidades inválidas."
                         );
-
                     }
 
-
-                    const pedido =
-                        await respuestaPedido.json();
-
-
-                    console.log(
-                        "PEDIDO CREADO:",
-                        pedido
+                    const respuestaPedido = await fetch(
+                        "http://localhost:5146/api/Pedidos",
+                        {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({
+                                nombreCliente: checkoutData.nombreCliente,
+                                telefono: checkoutData.telefono,
+                                direccion: checkoutData.direccion,
+                                ciudad: checkoutData.ciudad,
+                                metodoPago: checkoutData.metodoPago,
+                                productos: productosPedido
+                            })
+                        }
                     );
 
+                    const resultadoPedido = await respuestaPedido.json();
 
-                    /* ===========================
-                       VALIDAR ID DEL PEDIDO
-                    =========================== */
+                    if (!respuestaPedido.ok) {
+                        throw new Error(
+                            resultadoPedido.mensaje ||
+                            "No fue posible procesar el pedido."
+                        );
+                    }
+
+                    const pedido = resultadoPedido;
 
                     if (!pedido.id) {
-
                         throw new Error(
                             "El backend no devolvió el ID del pedido."
                         );
-
                     }
 
-                                        /* ===========================
-                       AGREGAR DETALLES DEL PEDIDO
-                    =========================== */
-
-                    for (const item of carrito) {
-
-                        console.log(
-                            "AGREGANDO PRODUCTO:",
-                            item.id,
-                            "CANTIDAD:",
-                            item.cantidad
-                        );
-
-
-                        const respuestaDetalle =
-                            await fetch(
-                                `http://localhost:5146/api/Pedidos/${pedido.id}/detalles`,
-                                {
-                                    method: "POST",
-
-                                    headers: {
-                                        "Content-Type":
-                                            "application/json"
-                                    },
-
-                                    body: JSON.stringify({
-
-                                        productoId:
-                                            item.id,
-
-                                        cantidad:
-                                            item.cantidad
-
-                                    })
-                                }
-                            );
-
-
-                        console.log(
-                            "RESPUESTA DETALLE:",
-                            respuestaDetalle.status
-                        );
-
-
-                        if (!respuestaDetalle.ok) {
-
-                            throw new Error(
-                                "Error al agregar el producto " +
-                                item.id +
-                                ". HTTP " +
-                                respuestaDetalle.status
-                            );
-
-                        }
-
-                    }
 
 
                     /* ===========================
@@ -541,9 +471,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-        /* ===========================
-       VOLVER A LA TIENDA
-    =========================== */
+    /* ===========================
+   VOLVER A LA TIENDA
+=========================== */
 
     if (volverTienda) {
 

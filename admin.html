@@ -1,0 +1,2318 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedidos | Mulford Kore</title>
+
+    <style>
+        :root {
+            --forest: #003f35;
+            --forest2: #075b4b;
+            --teal: #079c9b;
+            --lime: #9bcf32;
+            --cream: #f7f8f1;
+            --white: #fff;
+            --ink: #142b27;
+            --muted: #71817b;
+            --line: #e5ece7;
+            --shadow: 0 12px 32px rgba(0, 55, 43, .09);
+            --pink: #fce8ef;
+            --mint: #e6f5e9;
+            --aqua: #e3f5f3;
+            --gold: #fff3dc
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            margin: 0;
+            font-family: Inter, Arial, Helvetica, sans-serif;
+            color: var(--ink);
+            background: var(--cream)
+        }
+
+        button,
+        input,
+        select {
+            font: inherit
+        }
+
+        button {
+            cursor: pointer
+        }
+
+        .oculto {
+            display: none !important
+        }
+
+        /* LOGIN */
+        #loginPantalla {
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 28px;
+            background: radial-gradient(circle at 12% 10%, #d9f0e5 0, transparent 32%), radial-gradient(circle at 90% 85%, #e2f5d2 0, transparent 28%), linear-gradient(135deg, #f8faf5, #edf6ef)
+        }
+
+        .login-tarjeta {
+            width: min(100%, 440px);
+            padding: 38px 40px;
+            background: #fff;
+            border: 1px solid rgba(0, 75, 58, .10);
+            border-radius: 28px;
+            box-shadow: 0 24px 70px rgba(0, 57, 43, .14);
+            position: relative;
+            overflow: hidden
+        }
+
+        .login-tarjeta:before {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: #eaf6e7;
+            right: -90px;
+            top: -95px
+        }
+
+        .login-logo {
+            display: block;
+            width: 190px;
+            max-height: 190px;
+            object-fit: contain;
+            margin: 0 auto 20px;
+            position: relative
+        }
+
+        .login-tarjeta h1 {
+            font-family: Georgia, serif;
+            text-align: center;
+            color: var(--forest);
+            font-size: 27px;
+            margin: 0 0 8px
+        }
+
+        .login-tarjeta>p {
+            text-align: center;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.55;
+            margin: 0 0 28px
+        }
+
+        .campo {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 18px
+        }
+
+        .campo label {
+            font-size: 13px;
+            font-weight: 750;
+            color: #24443b
+        }
+
+        .campo input {
+            width: 100%;
+            padding: 14px 15px;
+            border: 1px solid var(--line);
+            border-radius: 13px;
+            background: #fbfdfb;
+            outline: none;
+            transition: .2s
+        }
+
+        .campo input:focus,
+        .busqueda input:focus,
+        .filtro-select:focus {
+            border-color: var(--teal);
+            box-shadow: 0 0 0 4px rgba(7, 156, 155, .10)
+        }
+
+        .password-wrap {
+            display: flex;
+            gap: 8px
+        }
+
+        .password-wrap input {
+            flex: 1;
+            min-width: 0
+        }
+
+        .ver-password {
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: #f4faf6;
+            color: var(--forest);
+            padding: 0 13px;
+            font-size: 12px;
+            font-weight: 700
+        }
+
+        .boton-principal {
+            width: 100%;
+            border: 0;
+            padding: 14px 18px;
+            border-radius: 13px;
+            color: #fff;
+            background: linear-gradient(110deg, var(--forest), var(--teal));
+            font-weight: 750;
+            box-shadow: 0 8px 18px rgba(0, 92, 72, .18);
+            transition: transform .18s, filter .18s
+        }
+
+        .boton-principal:hover {
+            filter: brightness(1.08);
+            transform: translateY(-1px)
+        }
+
+        .boton-principal:disabled {
+            opacity: .6;
+            cursor: wait;
+            transform: none
+        }
+
+        .mensaje {
+            margin-top: 14px;
+            font-size: 13px;
+            line-height: 1.5
+        }
+
+        .mensaje.error {
+            color: #b42318
+        }
+
+        .mensaje.exito {
+            color: var(--forest2)
+        }
+
+        /* APP SHELL */
+        #aplicacion {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 258px minmax(0, 1fr)
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            min-height: 650px;
+            padding: 22px 16px 18px;
+            background: linear-gradient(180deg, #003b32, #005344 70%, #00382f);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto
+        }
+
+        .sidebar-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 180px;
+            padding: 0 10px 18px;
+            border-bottom: 1px solid rgba(255, 255, 255, .2);
+            margin-bottom: 22px
+        }
+
+        .sidebar-brand img {
+            width: 190px;
+            max-height: 170px;
+            object-fit: contain;
+            filter: drop-shadow(0 5px 12px rgba(0, 0, 0, .14))
+        }
+
+        .nav-label {
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #a9d7c4;
+            padding: 0 13px;
+            margin: 0 0 10px
+        }
+
+        .sidebar-nav {
+            display: grid;
+            gap: 7px
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 13px 14px;
+            border-radius: 14px;
+            color: #eef8f1;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 650;
+            transition: .18s
+        }
+
+        .nav-link .nav-icon {
+            width: 22px;
+            text-align: center;
+            font-size: 18px
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: linear-gradient(100deg, #d9f2a9, #b9e88e);
+            color: #063e32;
+            box-shadow: 0 5px 14px rgba(0, 0, 0, .12)
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+            padding-top: 18px;
+            border-top: 1px solid rgba(255, 255, 255, .2)
+        }
+
+        .main-area {
+            min-width: 0
+        }
+
+        .barra-superior {
+            min-height: 88px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 18px 34px;
+            background: rgba(255, 255, 255, .9);
+            border-bottom: 1px solid var(--line);
+            backdrop-filter: blur(12px)
+        }
+
+        .top-title h1 {
+            font-family: Georgia, serif;
+            color: var(--forest);
+            font-size: 27px;
+            margin: 0 0 5px
+        }
+
+        .top-title p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        .barra-derecha {
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .usuario-admin {
+            padding: 9px 15px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: #f8fbf8;
+            font-size: 13px;
+            font-weight: 750;
+            color: var(--forest)
+        }
+
+        .usuario-admin span {
+            display: block;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 500;
+            margin-top: 2px
+        }
+
+        .boton-secundario {
+            padding: 10px 14px;
+            background: #fff;
+            color: var(--forest);
+            border: 1px solid #dce9e1;
+            border-radius: 11px;
+            font-weight: 700;
+            transition: .18s
+        }
+
+        .boton-secundario:hover {
+            background: #eaf6ee;
+            border-color: #b8d9c5
+        }
+
+        .contenido {
+            padding: 30px 34px 44px;
+            max-width: 1700px;
+            margin: 0 auto
+        }
+
+        .encabezado-pagina {
+            margin-bottom: 22px
+        }
+
+        .encabezado-pagina h2 {
+            margin: 0 0 7px;
+            font-size: 23px;
+            color: #173b31
+        }
+
+        .encabezado-pagina p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 14px
+        }
+
+        /* KPI CARDS */
+        .resumen {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+            margin-bottom: 24px
+        }
+
+        .resumen-card {
+            position: relative;
+            overflow: hidden;
+            padding: 20px 21px;
+            background: #fff;
+            border: 1px solid rgba(0, 75, 58, .07);
+            border-radius: 19px;
+            box-shadow: var(--shadow);
+            min-height: 120px
+        }
+
+        .resumen-card:after {
+            content: "";
+            position: absolute;
+            width: 88px;
+            height: 88px;
+            border-radius: 50%;
+            right: -28px;
+            bottom: -38px;
+            background: rgba(255, 255, 255, .52)
+        }
+
+        .resumen-card span {
+            display: block;
+            color: #53665e;
+            font-size: 13px;
+            font-weight: 650;
+            margin-bottom: 13px
+        }
+
+        .resumen-card strong {
+            font-size: 31px;
+            letter-spacing: -.7px;
+            color: var(--forest)
+        }
+
+        .resumen-card:nth-child(1) {
+            background: linear-gradient(135deg, #eff9e9, #dff1d9)
+        }
+
+        .resumen-card:nth-child(2) {
+            background: linear-gradient(135deg, #fff1f4, #fbe4eb)
+        }
+
+        .resumen-card:nth-child(3) {
+            background: linear-gradient(135deg, #eaf8f6, #d9f1ed)
+        }
+
+        .resumen-card:nth-child(4) {
+            background: linear-gradient(135deg, #fff8e9, #fff0d5)
+        }
+
+        /* ORDERS */
+        .pedidos-contenedor {
+            background: #fff;
+            border: 1px solid rgba(0, 75, 58, .08);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow)
+        }
+
+        .pedidos-titulo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 21px 22px 8px
+        }
+
+        .pedidos-titulo h3 {
+            margin: 0;
+            color: var(--forest);
+            font-family: Georgia, serif;
+            font-size: 20px
+        }
+
+        .herramientas {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 14px;
+            padding: 15px 22px 19px;
+            border-bottom: 1px solid var(--line)
+        }
+
+        .busqueda {
+            flex: 1;
+            min-width: 220px;
+            max-width: 430px
+        }
+
+        .busqueda input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: #fbfdfb;
+            outline: none
+        }
+
+        .filtros {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px
+        }
+
+        .filtro-boton {
+            border: 1px solid var(--line);
+            background: #f8faf8;
+            padding: 9px 12px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #53665e;
+            transition: .18s
+        }
+
+        .filtro-boton:hover {
+            border-color: #8ec8a5
+        }
+
+        .filtro-boton.activo {
+            color: #fff;
+            background: var(--forest2);
+            border-color: var(--forest2);
+            box-shadow: 0 4px 10px rgba(0, 80, 59, .16)
+        }
+
+        .tabla-scroll {
+            overflow-x: auto
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 850px
+        }
+
+        thead {
+            background: #f3f8f4
+        }
+
+        th {
+            padding: 15px 16px;
+            text-align: left;
+            font-size: 11px;
+            letter-spacing: .4px;
+            text-transform: uppercase;
+            color: #5a7067;
+            white-space: nowrap
+        }
+
+        td {
+            padding: 15px 16px;
+            border-top: 1px solid #edf1ee;
+            font-size: 13px;
+            vertical-align: middle
+        }
+
+        tbody tr {
+            transition: background .15s
+        }
+
+        tbody tr:hover {
+            background: #f7fbf7
+        }
+
+        tbody tr.seleccionado {
+            background: #e9f7ec
+        }
+
+        .pedido-numero {
+            color: var(--forest2);
+            font-weight: 800
+        }
+
+        .cliente-nombre {
+            font-weight: 750
+        }
+
+        .texto-secundario {
+            display: block;
+            margin-top: 4px;
+            color: var(--muted);
+            font-size: 12px
+        }
+
+        .estado {
+            display: inline-block;
+            padding: 7px 11px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 750;
+            white-space: nowrap
+        }
+
+        .estado-pendiente {
+            background: #fff0c8;
+            color: #855700
+        }
+
+        .estado-confirmado {
+            background: #d9f5df;
+            color: #126238
+        }
+
+        .estado-enviado {
+            background: #dcecff;
+            color: #0755a4
+        }
+
+        .estado-entregado {
+            background: #c9f5d3;
+            color: #075c2c
+        }
+
+        .estado-cancelado {
+            background: #ffe1df;
+            color: #a5221b
+        }
+
+        .boton-ver {
+            border: 1px solid #d6e8dc;
+            background: #f6fbf7;
+            border-radius: 10px;
+            padding: 8px 12px;
+            color: var(--forest2);
+            font-weight: 750
+        }
+
+        .boton-ver:hover {
+            background: #e4f4e8
+        }
+
+        .tabla-vacia {
+            padding: 40px 20px;
+            text-align: center;
+            color: var(--muted)
+        }
+
+        .pie-tabla {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 16px 22px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 12px
+        }
+
+        /* ORDER DETAIL DRAWER */
+        .panel-fondo {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(0, 28, 22, .42);
+            opacity: 0;
+            visibility: hidden;
+            transition: .2s
+        }
+
+        .panel-fondo.abierto {
+            opacity: 1;
+            visibility: visible
+        }
+
+        .panel-lateral {
+            position: fixed;
+            z-index: 1001;
+            top: 0;
+            right: 0;
+            width: min(510px, 100%);
+            height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            box-shadow: -15px 0 45px rgba(0, 0, 0, .16);
+            transform: translateX(102%);
+            transition: transform .25s ease
+        }
+
+        .panel-lateral.abierto {
+            transform: translateX(0)
+        }
+
+        .panel-cabecera {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 22px 24px;
+            border-bottom: 1px solid var(--line);
+            background: #f6faf6
+        }
+
+        .panel-cabecera h2 {
+            margin: 0;
+            color: var(--forest);
+            font-family: Georgia, serif;
+            font-size: 21px
+        }
+
+        .cerrar-panel {
+            width: 38px;
+            height: 38px;
+            border: 1px solid var(--line);
+            background: white;
+            border-radius: 12px;
+            font-size: 22px;
+            color: var(--forest)
+        }
+
+        .panel-contenido {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px
+        }
+
+        .pedido-panel-titulo {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px
+        }
+
+        .pedido-panel-titulo h3 {
+            margin: 0;
+            font-size: 23px
+        }
+
+        .seccion-panel {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--line)
+        }
+
+        .seccion-panel h4 {
+            margin: 0 0 15px;
+            font-size: 15px;
+            color: var(--forest)
+        }
+
+        .dato-fila {
+            display: flex;
+            justify-content: space-between;
+            gap: 14px;
+            margin: 11px 0;
+            font-size: 13px;
+            line-height: 1.5
+        }
+
+        .dato-fila .etiqueta {
+            color: var(--muted)
+        }
+
+        .dato-fila .valor {
+            text-align: right;
+            overflow-wrap: anywhere
+        }
+
+        .productos-lista {
+            display: flex;
+            flex-direction: column;
+            gap: 12px
+        }
+
+        .producto-fila {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 13px;
+            background: #f5faf6;
+            border-radius: 12px;
+            font-size: 13px
+        }
+
+        .producto-fila small {
+            display: block;
+            margin-top: 4px;
+            color: var(--muted)
+        }
+
+        .total-fila {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--forest2)
+        }
+
+        .panel-acciones {
+            padding: 20px 24px;
+            border-top: 1px solid var(--line);
+            background: #fbfdfb
+        }
+
+        .panel-acciones label {
+            display: block;
+            font-size: 12px;
+            font-weight: 750;
+            margin-bottom: 8px
+        }
+
+        .panel-acciones select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--line);
+            border-radius: 11px;
+            margin-bottom: 12px;
+            background: white
+        }
+
+        .panel-acciones .boton-principal {
+            margin-bottom: 9px
+        }
+
+        #mensajePanel {
+            font-size: 12px;
+            line-height: 1.5
+        }
+
+        /* DASHBOARD VISUAL */
+        .dashboard-grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(280px,1fr);gap:18px;margin:0 0 20px}
+        .dashboard-card{background:#fff;border:1px solid rgba(0,75,58,.08);border-radius:21px;padding:22px;box-shadow:var(--shadow);min-width:0}
+        .dashboard-card-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+        .dashboard-card-heading h3{margin:5px 0 0;color:var(--forest);font-family:Georgia,serif;font-size:20px}
+        .eyebrow{font-size:10px;letter-spacing:1.8px;font-weight:800;color:#7a9388}
+        .icono-card{width:42px;height:42px;display:grid;place-items:center;border-radius:14px;background:#e5f5e9;color:#08764f;font-size:24px}
+        .icono-card.aqua{background:#e2f5f3;color:#078b88}
+        .grafica-pedidos{height:205px;display:flex;align-items:flex-end;gap:clamp(7px,2vw,18px);padding:15px 5px 0;border-bottom:1px solid #e7eee9}
+        .barra-dia{flex:1;min-width:0;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:8px}
+        .barra-dia .barra-valor{width:min(100%,42px);min-height:3px;border-radius:9px 9px 3px 3px;background:linear-gradient(180deg,#20b4a0,#075b4b);box-shadow:0 5px 12px rgba(7,91,75,.16);transition:height .25s}
+        .barra-dia strong{font-size:11px;color:#36554a;font-weight:700}
+        .barra-dia small{font-size:10px;color:#819087}
+        .estado-vacio-grafica{margin:auto;color:var(--muted);font-size:13px;text-align:center}
+        .nota-dashboard{margin:12px 0 0;color:#87958e;font-size:11px}
+        .distribucion-pedidos{display:grid;gap:14px}
+        .estado-resumen{display:grid;grid-template-columns:105px 1fr 28px;align-items:center;gap:10px;font-size:12px;color:#52665d}
+        .estado-track{height:9px;border-radius:99px;background:#edf2ee;overflow:hidden}
+        .estado-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#13a88f,#8fcf42)}
+        .estado-resumen strong{text-align:right;color:var(--forest)}
+        .enlace-dashboard{margin-top:20px;border:0;background:transparent;color:var(--forest2);font-weight:800;padding:8px 0}
+        .enlace-dashboard span{font-size:18px;margin-left:5px}
+        .acciones-dashboard{margin:0 0 22px;padding:21px 22px;background:linear-gradient(115deg,#f4faf3,#fff);border:1px solid #e5eee6;border-radius:21px;box-shadow:var(--shadow)}
+        .acciones-dashboard .dashboard-card-heading{margin-bottom:14px}
+        .acciones-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+        .accion-tile{display:flex;flex-direction:column;align-items:flex-start;gap:7px;text-align:left;border:1px solid transparent;border-radius:16px;padding:17px;background:#eaf7e9;color:#174a39;transition:transform .18s,box-shadow .18s}
+        .accion-tile:hover{transform:translateY(-3px);box-shadow:0 9px 20px rgba(0,60,45,.10)}
+        .accion-tile strong{font-size:14px}.accion-tile small{font-size:11px;color:#63766c}
+        .accion-icono{font-size:25px;font-weight:800}
+        .accion-rosa{background:#fff0f3;color:#9d3d5b}.accion-aqua{background:#e5f6f3;color:#087a76}
+        .tabla-scroll{overflow-x:auto}
+        @media(max-width:900px){.dashboard-grid{grid-template-columns:1fr}}
+        @media(max-width:700px){.dashboard-card{padding:17px}.acciones-dashboard{padding:16px}.acciones-grid{grid-template-columns:1fr}.grafica-pedidos{height:175px}.estado-resumen{grid-template-columns:90px 1fr 24px}}
+
+        @media(max-width:1100px) {
+            #aplicacion {
+                grid-template-columns: 220px minmax(0, 1fr)
+            }
+
+            .sidebar-brand img {
+                width: 165px
+            }
+
+            .contenido {
+                padding: 24px 20px
+            }
+
+            .barra-superior {
+                padding: 16px 20px
+            }
+
+            .resumen {
+                grid-template-columns: repeat(2, minmax(0, 1fr))
+            }
+        }
+
+        @media(max-width:700px) {
+            #aplicacion {
+                grid-template-columns: 1fr
+            }
+
+            .sidebar {
+                position: relative;
+                height: auto;
+                min-height: 0;
+                padding: 12px 14px
+            }
+
+            .sidebar-brand {
+                min-height: 0;
+                border: 0;
+                margin: 0;
+                padding: 0 0 10px
+            }
+
+            .sidebar-brand img {
+                width: 112px;
+                height: 76px;
+                object-fit: contain
+            }
+
+            .nav-label,
+            .sidebar-bottom {
+                display: none
+            }
+
+            .sidebar-nav {
+                display: flex;
+                overflow-x: auto;
+                gap: 6px;
+                padding-bottom: 2px
+            }
+
+            .nav-link {
+                white-space: nowrap;
+                padding: 10px 12px;
+                font-size: 12px
+            }
+
+            .nav-link .nav-icon {
+                font-size: 15px
+            }
+
+            .barra-superior {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 12px;
+                padding: 16px
+            }
+
+            .barra-derecha {
+                width: 100%;
+                justify-content: space-between;
+                flex-wrap: wrap
+            }
+
+            .contenido {
+                padding: 18px 12px 30px
+            }
+
+            .encabezado-pagina h2 {
+                font-size: 21px
+            }
+
+            .resumen {
+                gap: 9px
+            }
+
+            .resumen-card {
+                padding: 14px;
+                min-height: 100px;
+                border-radius: 15px
+            }
+
+            .resumen-card span {
+                font-size: 11px;
+                margin-bottom: 9px
+            }
+
+            .resumen-card strong {
+                font-size: 24px
+            }
+
+            .pedidos-titulo {
+                padding: 17px 14px 7px
+            }
+
+            .herramientas {
+                padding: 12px 14px
+            }
+
+            .busqueda {
+                min-width: 100%;
+                max-width: none
+            }
+
+            .filtros {
+                width: 100%
+            }
+
+            .filtro-boton {
+                flex: 1;
+                padding: 8px 7px
+            }
+
+            .pie-tabla {
+                padding: 13px 14px;
+                align-items: flex-start;
+                flex-direction: column
+            }
+
+            .panel-cabecera,
+            .panel-contenido,
+            .panel-acciones {
+                padding-left: 18px;
+                padding-right: 18px
+            }
+        }
+
+        .admin-page{display:none}.admin-page.activa{display:block}
+        .sidebar-nav .nav-link{cursor:pointer}
+        .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin:20px 0}
+        .kpi-box,.admin-box{background:#fff;border:1px solid #e5eee8;border-radius:18px;padding:20px;box-shadow:0 8px 24px rgba(20,65,48,.05)}
+        .kpi-box span{display:block;color:#718078;font-size:13px}.kpi-box strong{display:block;font-size:25px;color:#164d3c;margin-top:8px}
+        .admin-toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin:18px 0}
+        .admin-toolbar input,.admin-toolbar select,.admin-form input,.admin-form select{padding:11px 13px;border:1px solid #dce7df;border-radius:10px;background:#fff;min-width:150px}
+        .admin-table{width:100%;border-collapse:collapse;min-width:700px}.admin-table th,.admin-table td{padding:13px;text-align:left;border-bottom:1px solid #edf1ed;font-size:13px}.admin-table th{color:#65766c;background:#f7faf7}
+        .admin-table-wrap{overflow:auto}.admin-btn{border:0;border-radius:10px;padding:10px 14px;cursor:pointer;font-weight:600;background:#174f3e;color:white}.admin-btn.light{background:#eaf3ed;color:#174f3e}.admin-btn.danger{background:#fff0ed;color:#a63d2e}
+        .admin-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.admin-form label{display:grid;gap:6px;font-size:13px;color:#5c6b62}.admin-form .full{grid-column:1/-1}
+        .stock-badge{padding:5px 9px;border-radius:20px;font-size:12px;background:#eaf5ed;color:#246644}.stock-badge.low{background:#fff4df;color:#93620a}.stock-badge.out{background:#ffebe8;color:#a33b2e}
+        .bars{display:flex;align-items:end;gap:12px;height:190px;padding:16px 4px 0;border-bottom:1px solid #e8eee9}.bar-col{flex:1;min-width:0;text-align:center;font-size:11px;color:#718078}.bar{background:linear-gradient(180deg,#8fcf78,#1c6a4c);border-radius:8px 8px 0 0;min-height:3px;margin-bottom:7px}.bar.money{background:linear-gradient(180deg,#9dc9bd,#287b70)}
+        @media(max-width:650px){.admin-form{grid-template-columns:1fr}.admin-form .full{grid-column:auto}}
+    </style>
+</head>
+
+<body>
+    <!-- ACCESO ADMINISTRATIVO -->
+    <section id="loginPantalla">
+        <div class="login-tarjeta">
+            <img class="login-logo" src="./assets/logos/logo-mulford.png" alt="Logo oficial Mulford Store">
+            <h1>Panel de administración</h1>
+            <p>Ingresa con tus credenciales para gestionar los pedidos de Mulford Store.</p>
+            <form id="loginFormulario">
+                <div class="campo">
+                    <label for="usuario">Usuario</label>
+                    <input id="usuario" name="usuario" autocomplete="username" placeholder="Tu usuario" required>
+                </div>
+                <div class="campo">
+                    <label for="password">Contraseña</label>
+                    <div class="password-wrap">
+                        <input id="password" name="password" type="password" autocomplete="current-password"
+                            placeholder="Tu contraseña" required>
+                        <button class="ver-password" id="verPassword" type="button"
+                            aria-label="Mostrar contraseña">Mostrar</button>
+                    </div>
+                </div>
+                <button class="boton-principal" id="botonLogin" type="submit">Iniciar sesión</button>
+                <div id="mensajeLogin" class="mensaje" role="status" aria-live="polite"></div>
+            </form>
+        </div>
+    </section>
+
+    <!-- PANEL ADMINISTRATIVO -->
+    <div id="aplicacion" class="oculto">
+        <aside class="sidebar">
+            <div class="sidebar-brand"><img src="./assets/logos/logo-mulford.png" alt="Mulford Store"></div>
+            <p class="nav-label">Administración</p>
+            <nav class="sidebar-nav" aria-label="Navegación administrativa">
+                <a class="nav-link" href="#inicio"><span class="nav-icon">⌂</span>Inicio</a>
+                <a class="nav-link active" href="#panelInicio" data-page="panelInicio"><span class="nav-icon">⌂</span>Resumen</a>
+                <a class="nav-link" href="#pedidos" data-page="panelPedidos"><span class="nav-icon">🛒</span>Pedidos</a>
+                <a class="nav-link" href="#inventario" data-page="panelInventario"><span class="nav-icon">▤</span>Inventario</a>
+                <a class="nav-link" href="#productos" data-page="panelProductos"><span class="nav-icon">✚</span>Productos</a>
+                <a class="nav-link" href="#ventas" data-page="panelVentas"><span class="nav-icon">$</span>Ventas</a>
+            </nav>
+            <div class="sidebar-bottom">
+                <button class="nav-link" id="botonCerrarSesion" type="button"
+                    style="width:100%;border:0;background:transparent;text-align:left"><span
+                        class="nav-icon">⇥</span>Cerrar sesión</button>
+            </div>
+        </aside>
+
+        <div class="main-area" id="inicio">
+            <header class="barra-superior">
+                <div class="top-title">
+                    <h1>Panel de Administrador</h1>
+                    <p>Gestiona pedidos de Mulford Store.</p>
+                </div>
+                <div class="barra-derecha">
+                    <div class="usuario-admin"><strong id="nombreAdmin">Administradora</strong><span>Sesión
+                            administrativa</span></div>
+                    <button class="boton-secundario" id="botonRecargar" type="button">↻ &nbsp;Actualizar</button>
+                </div>
+            </header>
+
+            <main class="contenido">
+                <div id="panelInicio" class="admin-page activa">
+                <section class="encabezado-pagina">
+                    <h2>Resumen de pedidos</h2>
+                    <p>Consulta el estado de tus ventas y administra cada pedido.</p>
+                </section>
+
+                <section class="resumen" aria-label="Resumen de pedidos">
+                    <article class="resumen-card"><span>Total de pedidos</span><strong id="totalPedidos">0</strong>
+                    </article>
+                    <article class="resumen-card"><span>Pendientes</span><strong id="totalPendientes">0</strong>
+                    </article>
+                    <article class="resumen-card"><span>Pagos confirmados</span><strong id="totalConfirmados">0</strong>
+                    </article>
+                    <article class="resumen-card"><span>Enviados</span><strong id="totalEnviados">0</strong></article>
+                </section>
+
+                <section class="dashboard-grid" aria-label="Resumen visual de actividad">
+                    <article class="dashboard-card grafica-card">
+                        <div class="dashboard-card-heading">
+                            <div>
+                                <span class="eyebrow">ACTIVIDAD COMERCIAL</span>
+                                <h3>Pedidos de los últimos 7 días</h3>
+                            </div>
+                            <span class="icono-card">▥</span>
+                        </div>
+                        <div id="graficaPedidos" class="grafica-pedidos" aria-live="polite">
+                            <p class="estado-vacio-grafica">Los datos aparecerán cuando se carguen los pedidos.</p>
+                        </div>
+                        <p class="nota-dashboard">La gráfica se calcula con los pedidos reales devueltos por la API.</p>
+                    </article>
+
+                    <article class="dashboard-card actividad-card">
+                        <div class="dashboard-card-heading">
+                            <div>
+                                <span class="eyebrow">ESTADO ACTUAL</span>
+                                <h3>Distribución de pedidos</h3>
+                            </div>
+                            <span class="icono-card aqua">◈</span>
+                        </div>
+                        <div id="distribucionPedidos" class="distribucion-pedidos">
+                            <p class="texto-secundario">Esperando datos de la API.</p>
+                        </div>
+                        <button class="enlace-dashboard" type="button" id="irPedidos">Gestionar pedidos <span>→</span></button>
+                    </article>
+                </section>
+
+                <section class="acciones-dashboard" aria-label="Accesos rápidos">
+                    <div class="dashboard-card-heading">
+                        <div>
+                            <span class="eyebrow">GESTIÓN DE LA TIENDA</span>
+                            <h3>Accesos rápidos</h3>
+                        </div>
+                    </div>
+                    <div class="acciones-grid">
+                        <button class="accion-tile accion-verde" type="button" data-accion="pedidos">
+                            <span class="accion-icono">＋</span><strong>Revisar pedidos</strong><small>Consultar compras y pagos</small>
+                        </button>
+                        <button class="accion-tile accion-rosa" type="button" data-accion="pendientes">
+                            <span class="accion-icono">◷</span><strong>Ver pendientes</strong><small>Pedidos por gestionar</small>
+                        </button>
+                        <button class="accion-tile accion-aqua" type="button" id="accionActualizar">
+                            <span class="accion-icono">↻</span><strong>Actualizar datos</strong><small>Consultar la información más reciente</small>
+                        </button>
+                    </div>
+                </section>
+
+                <section class="pedidos-contenedor" id="pedidos">
+                    <div class="pedidos-titulo">
+                        <h3>Últimos pedidos</h3>
+                    </div>
+                    <div class="herramientas">
+                        <div class="busqueda">
+                            <input id="buscarPedido" type="search"
+                                placeholder="Buscar por pedido, cédula, cliente o teléfono..."
+                                aria-label="Buscar pedidos">
+                        </div>
+                        <div class="filtros" id="filtrosEstados">
+                            <button class="filtro-boton activo" data-estado="Todos" type="button">Todos</button>
+                            <button class="filtro-boton" data-estado="Pendiente" type="button">Pendientes</button>
+                            <button class="filtro-boton" data-estado="Confirmado" type="button">Confirmados</button>
+                            <button class="filtro-boton" data-estado="Enviado" type="button">Enviados</button>
+                            <button class="filtro-boton" data-estado="Entregado" type="button">Entregados</button>
+                            <button class="filtro-boton" data-estado="Cancelado" type="button">Cancelados</button>
+                        </div>
+                    </div>
+                    <div class="tabla-scroll">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Pedido</th>
+                                    <th>Fecha</th>
+                                    <th>Cliente</th>
+                                    <th>Total</th>
+                                    <th>Método de pago</th>
+                                    <th>Estado</th>
+                                    <th>Detalle</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tablaPedidos"></tbody>
+                        </table>
+                    </div>
+                    <div id="tablaVacia" class="tabla-vacia oculto">No hay pedidos que coincidan con la búsqueda.</div>
+                    <div class="pie-tabla"><span id="contadorPedidos">0 pedidos</span><span>Selecciona «Ver detalle»
+                            para consultar o actualizar un pedido.</span></div>
+                    <div id="mensajeGeneral" class="mensaje" role="status" aria-live="polite"
+                        style="padding:0 22px 16px"></div>
+                </section>
+                </div>
+                <section id="panelPedidos" class="admin-page">
+                    <div class="encabezado-pagina"><h2>Gestión de pedidos</h2><p>Consulta compras, pagos y estados.</p></div>
+                    <div id="pedidosMount"></div>
+                </section>
+                <section id="panelInventario" class="admin-page">
+                    <div class="encabezado-pagina"><h2>Inventario</h2><p>Existencias actuales y alertas de agotados.</p></div>
+                    <div class="kpi-grid"><article class="kpi-box"><span>Productos registrados</span><strong id="invTotal">0</strong></article><article class="kpi-box"><span>Unidades disponibles</span><strong id="invUnidades">0</strong></article><article class="kpi-box"><span>Agotados</span><strong id="invAgotados">0</strong></article><article class="kpi-box"><span>Bajo stock (≤ 5)</span><strong id="invBajo">0</strong></article></div>
+                    <div class="admin-box"><div class="admin-toolbar"><input id="buscarInventario" placeholder="Buscar producto o referencia"><select id="filtroStock"><option value="todos">Todos</option><option value="agotado">Agotados</option><option value="bajo">Bajo stock</option><option value="disponible">Disponibles</option></select><button class="admin-btn light" id="recargarInventario">Actualizar inventario</button></div><div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Producto</th><th>Referencia</th><th>Tono</th><th>Categoría</th><th>Precio</th><th>Stock</th><th>Estado</th></tr></thead><tbody id="tablaInventario"></tbody></table></div></div>
+                </section>
+                <section id="panelProductos" class="admin-page">
+                    <div class="encabezado-pagina"><h2>Administración de productos</h2><p>Crea y modifica el catálogo conectado a SQL Server.</p></div>
+                    <div class="admin-box" style="margin-bottom:18px"><h3 id="tituloFormularioProducto">Registrar producto</h3><form id="formProducto" class="admin-form"><input type="hidden" id="productoId"><label>Nombre<input id="prodNombre" required maxlength="150"></label><label>Categoría<input id="prodCategoria" required></label><label>Referencia<input id="prodReferencia" required></label><label>Tono<input id="prodTono"></label><label>Precio (COP)<input id="prodPrecio" type="number" min="1" step="0.01" required></label><label>Stock<input id="prodStock" type="number" min="0" step="1" required></label><label class="full">URL o ruta de imagen<input id="prodImagen" placeholder="assets/productos/imagen.png"></label><div class="full" style="display:flex;gap:10px;flex-wrap:wrap"><button class="admin-btn" type="submit">Guardar producto</button><button class="admin-btn light" type="button" id="limpiarProducto">Limpiar</button><span id="mensajeProducto" role="status"></span></div></form></div>
+                    <div class="admin-box"><div class="admin-toolbar"><input id="buscarProductos" placeholder="Buscar producto"><button class="admin-btn light" id="recargarProductos">Actualizar lista</button></div><div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Producto</th><th>Referencia</th><th>Tono</th><th>Precio</th><th>Stock</th><th>Acciones</th></tr></thead><tbody id="tablaProductos"></tbody></table></div></div>
+                </section>
+                <section id="panelVentas" class="admin-page">
+                    <div class="encabezado-pagina"><h2>Ventas e ingresos</h2><p>Los ingresos excluyen pedidos pendientes y cancelados.</p></div>
+                    <div class="kpi-grid"><article class="kpi-box"><span>Ingresos confirmados</span><strong id="ventasIngresos">$0</strong></article><article class="kpi-box"><span>Pedidos pagados</span><strong id="ventasPedidos">0</strong></article><article class="kpi-box"><span>Ticket promedio</span><strong id="ventasTicket">$0</strong></article><article class="kpi-box"><span>Unidades vendidas</span><strong id="ventasUnidades">0</strong></article></div>
+                    <div class="admin-box" style="margin-bottom:18px"><h3>Ingresos confirmados por día · últimos 7 días</h3><div id="graficaIngresos" class="bars"></div></div>
+                    <div class="admin-box"><h3>Pedidos por día · últimos 7 días</h3><div id="graficaOrdenes" class="bars"></div><p style="font-size:12px;color:#718078">Cuenta todos los pedidos registrados, incluidos los cancelados. No representa ventas ni dinero recibido.</p></div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- DETALLE DEL PEDIDO -->
+    <div id="panelFondo" class="panel-fondo"></div>
+    <aside id="panelLateral" class="panel-lateral" aria-label="Detalle del pedido" aria-hidden="true">
+        <div class="panel-cabecera">
+            <h2>Detalle del pedido</h2><button id="cerrarPanel" class="cerrar-panel" aria-label="Cerrar panel"
+                type="button">×</button>
+        </div>
+        <div id="panelContenido" class="panel-contenido">
+            <p class="texto-secundario">Selecciona un pedido para consultar sus detalles.</p>
+        </div>
+        <div id="panelAcciones" class="panel-acciones oculto">
+            <label for="nuevoEstado">Actualizar estado del pedido</label>
+            <select id="nuevoEstado">
+                <option value="">Selecciona un estado</option>
+                <option value="Enviado">Marcar como enviado</option>
+                <option value="Entregado">Marcar como entregado</option>
+                <option value="Cancelado">Cancelar pedido</option>
+            </select>
+            <button id="botonActualizarEstado" class="boton-principal" type="button">Actualizar estado</button>
+            <button id="botonConfirmarPago" class="boton-secundario" style="width:100%" type="button">Confirmar
+                pago</button>
+            <div id="mensajePanel" class="mensaje" role="status" aria-live="polite"></div>
+        </div>
+    </aside>
+
+    <script>
+        const API = "http://localhost:5146/api";
+
+        let token = null;
+        let pedidosGuardados = [];
+        let productosGuardados = [];
+        let estadoFiltro = "Todos";
+        let pedidoSeleccionado = null;
+        let posicionScrollAnterior = 0;
+
+        const loginPantalla = document.getElementById("loginPantalla");
+        const aplicacion = document.getElementById("aplicacion");
+        const loginFormulario = document.getElementById("loginFormulario");
+        const botonLogin = document.getElementById("botonLogin");
+        const mensajeLogin = document.getElementById("mensajeLogin");
+        const nombreAdmin = document.getElementById("nombreAdmin");
+
+        document.getElementById("verPassword").addEventListener("click", () => {
+            const campoPassword = document.getElementById("password");
+            const visible = campoPassword.type === "text";
+            campoPassword.type = visible ? "password" : "text";
+            document.getElementById("verPassword").textContent = visible ? "Mostrar" : "Ocultar";
+            document.getElementById("verPassword").setAttribute("aria-label", visible ? "Mostrar contraseña" : "Ocultar contraseña");
+        });
+
+        const tablaPedidos = document.getElementById("tablaPedidos");
+        const tablaVacia = document.getElementById("tablaVacia");
+        const contadorPedidos = document.getElementById("contadorPedidos");
+        const buscarPedido = document.getElementById("buscarPedido");
+        const mensajeGeneral = document.getElementById("mensajeGeneral");
+
+        const panelFondo = document.getElementById("panelFondo");
+        const panelLateral = document.getElementById("panelLateral");
+        const panelContenido = document.getElementById("panelContenido");
+        const panelAcciones = document.getElementById("panelAcciones");
+        const nuevoEstado = document.getElementById("nuevoEstado");
+        const botonActualizarEstado =
+            document.getElementById("botonActualizarEstado");
+        const botonConfirmarPago =
+            document.getElementById("botonConfirmarPago");
+        const mensajePanel = document.getElementById("mensajePanel");
+
+        // -----------------------------------------------------
+        // UTILIDADES
+        // -----------------------------------------------------
+
+        function escaparHTML(valor) {
+            return String(valor ?? "").replace(/[&<>"']/g, caracter => ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#39;"
+            })[caracter]);
+        }
+
+        function formatoDinero(valor) {
+            return new Intl.NumberFormat("es-CO", {
+                style: "currency",
+                currency: "COP",
+                maximumFractionDigits: 0
+            }).format(Number(valor) || 0);
+        }
+
+        function formatoFecha(fecha) {
+            if (!fecha) return "Sin fecha";
+
+            const fechaConvertida = new Date(fecha);
+
+            if (Number.isNaN(fechaConvertida.getTime())) {
+                return escaparHTML(fecha);
+            }
+
+            return fechaConvertida.toLocaleString("es-CO", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit"
+            });
+        }
+
+        function claseEstado(estado) {
+            const clases = {
+                Pendiente: "estado-pendiente",
+                Confirmado: "estado-confirmado",
+                Enviado: "estado-enviado",
+                Entregado: "estado-entregado",
+                Cancelado: "estado-cancelado"
+            };
+
+            return clases[estado] || "estado-pendiente";
+        }
+
+        function mostrarMensaje(elemento, texto, tipo = "") {
+            elemento.textContent = texto;
+            elemento.className = "mensaje";
+
+            if (tipo) {
+                elemento.classList.add(tipo);
+            }
+        }
+
+        async function leerRespuesta(respuesta) {
+            const texto = await respuesta.text();
+
+            if (!texto) return {};
+
+            try {
+                return JSON.parse(texto);
+            } catch {
+                return { mensaje: texto };
+            }
+        }
+
+        function encabezadosAutorizacion() {
+            return {
+                "Authorization": `Bearer ${token}`
+            };
+        }
+
+        // -----------------------------------------------------
+        // INICIO DE SESIÓN
+        // -----------------------------------------------------
+
+        loginFormulario.addEventListener("submit", async evento => {
+            evento.preventDefault();
+
+            const usuario = document.getElementById("usuario").value.trim();
+            const password = document.getElementById("password").value;
+
+            botonLogin.disabled = true;
+            botonLogin.textContent = "Ingresando...";
+            mostrarMensaje(mensajeLogin, "");
+
+            try {
+                const respuesta = await fetch(`${API}/Administradores/login`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ usuario, password })
+                });
+
+                const datos = await leerRespuesta(respuesta);
+
+                if (!respuesta.ok) {
+                    throw new Error(
+                        datos.mensaje || "No fue posible iniciar sesión."
+                    );
+                }
+
+                if (!datos.token) {
+                    throw new Error(
+                        "La API no devolvió un token de autenticación."
+                    );
+                }
+
+                token = datos.token;
+                nombreAdmin.textContent = datos.usuario || "Administrador";
+
+                loginPantalla.classList.add("oculto");
+                aplicacion.classList.remove("oculto");
+
+                await cargarPedidos();
+                await cargarProductos();
+
+            } catch (error) {
+                mostrarMensaje(
+                    mensajeLogin,
+                    error.message || "No se pudo conectar con la API.",
+                    "error"
+                );
+            } finally {
+                botonLogin.disabled = false;
+                botonLogin.textContent = "Iniciar sesión";
+            }
+        });
+
+        // -----------------------------------------------------
+        // CARGAR PEDIDOS
+        // -----------------------------------------------------
+
+        async function cargarPedidos() {
+            mostrarMensaje(mensajeGeneral, "Actualizando pedidos...");
+
+            try {
+                const respuesta = await fetch(`${API}/Pedidos`, {
+                    method: "GET",
+                    headers: encabezadosAutorizacion()
+                });
+
+                const datos = await leerRespuesta(respuesta);
+
+                if (!respuesta.ok) {
+                    if (respuesta.status === 401 ||
+                        respuesta.status === 403) {
+                        throw new Error(
+                            "La sesión no está autorizada. Inicia sesión nuevamente."
+                        );
+                    }
+
+                    throw new Error(
+                        datos.mensaje || "No fue posible cargar los pedidos."
+                    );
+                }
+
+                if (!Array.isArray(datos)) {
+                    throw new Error(
+                        "La API no devolvió la lista de pedidos esperada."
+                    );
+                }
+
+                pedidosGuardados = datos;
+
+                actualizarResumen();
+                actualizarDashboard();
+                mostrarPedidos();
+                actualizarVentas();
+
+                if (pedidoSeleccionado) {
+                    const pedidoActualizado = pedidosGuardados.find(
+                        pedido => pedido.id === pedidoSeleccionado.id
+                    );
+
+                    if (pedidoActualizado) {
+                        pedidoSeleccionado = pedidoActualizado;
+                        await abrirDetalle(pedidoActualizado, false);
+                    } else {
+                        cerrarPanel();
+                    }
+                }
+
+                mostrarMensaje(
+                    mensajeGeneral,
+                    `Pedidos actualizados: ${pedidosGuardados.length}.`,
+                    "exito"
+                );
+
+            } catch (error) {
+                mostrarMensaje(
+                    mensajeGeneral,
+                    error.message || "Error al consultar los pedidos.",
+                    "error"
+                );
+                throw error;
+            }
+        }
+
+        // -----------------------------------------------------
+        // RESUMEN DE PEDIDOS
+        // -----------------------------------------------------
+
+        function actualizarDashboard() {
+            renderizarGraficaPedidos();
+            renderizarDistribucionPedidos();
+        }
+
+        function renderizarGraficaPedidos() {
+            const contenedor = document.getElementById("graficaPedidos");
+            if (!contenedor) return;
+
+            const hoy = new Date();
+            const dias = [];
+            for (let i = 6; i >= 0; i--) {
+                const fecha = new Date(hoy);
+                fecha.setHours(0, 0, 0, 0);
+                fecha.setDate(hoy.getDate() - i);
+                dias.push(fecha);
+            }
+
+            const totales = dias.map(dia => {
+                const siguiente = new Date(dia);
+                siguiente.setDate(dia.getDate() + 1);
+                return pedidosGuardados.filter(p => {
+                    if (!p.fecha) return false;
+                    const fechaPedido = new Date(p.fecha);
+                    return !Number.isNaN(fechaPedido.getTime()) &&
+                        fechaPedido >= dia && fechaPedido < siguiente;
+                }).length;
+            });
+            const maximo = Math.max(1, ...totales);
+            const nombres = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
+
+            contenedor.innerHTML = dias.map((dia, i) => {
+                const altura = totales[i] === 0 ? 3 : Math.max(10, (totales[i] / maximo) * 100);
+                return `<div class="barra-dia" title="${totales[i]} pedido(s)">
+                    <strong>${totales[i]}</strong>
+                    <div class="barra-valor" style="height:${altura}%"></div>
+                    <small>${nombres[dia.getDay()]}</small>
+                </div>`;
+            }).join("");
+        }
+
+        function renderizarDistribucionPedidos() {
+            const contenedor = document.getElementById("distribucionPedidos");
+            if (!contenedor) return;
+            const estados = [
+                ["Pendientes", "Pendiente"],
+                ["Confirmados", "Confirmado"],
+                ["Enviados", "Enviado"],
+                ["Entregados", "Entregado"],
+                ["Cancelados", "Cancelado"]
+            ];
+            const total = pedidosGuardados.length;
+            if (!total) {
+                contenedor.innerHTML = '<p class="texto-secundario">Todavía no hay pedidos registrados.</p>';
+                return;
+            }
+            contenedor.innerHTML = estados.map(([etiqueta, estado]) => {
+                const cantidad = pedidosGuardados.filter(p => (p.estado || "Pendiente") === estado).length;
+                const porcentaje = (cantidad / total) * 100;
+                return `<div class="estado-resumen">
+                    <span>${etiqueta}</span>
+                    <div class="estado-track"><div class="estado-fill" style="width:${porcentaje}%"></div></div>
+                    <strong>${cantidad}</strong>
+                </div>`;
+            }).join("");
+        }
+
+        function actualizarResumen() {
+            document.getElementById("totalPedidos").textContent =
+                pedidosGuardados.length;
+
+            document.getElementById("totalPendientes").textContent =
+                pedidosGuardados.filter(p => p.estado === "Pendiente").length;
+
+            document.getElementById("totalConfirmados").textContent =
+                pedidosGuardados.filter(p => p.estado === "Confirmado").length;
+
+            document.getElementById("totalEnviados").textContent =
+                pedidosGuardados.filter(p => p.estado === "Enviado").length;
+        }
+
+
+        // MOSTRAR TABLA
+        // -----------------------------------------------------
+
+        function mostrarPedidos() {
+            const busqueda = buscarPedido.value.trim().toLowerCase();
+
+            const pedidosFiltrados = pedidosGuardados.filter(pedido => {
+                const coincideEstado =
+
+                    estadoFiltro === "Todos" ||
+                    pedido.estado === estadoFiltro;
+
+                const textoPedido = [
+                    pedido.id,
+                    pedido.referenciaComercial,
+                    pedido.cedula,
+                    pedido.nombreCliente,
+                    pedido.telefono,
+                    pedido.direccion,
+                    pedido.ciudad,
+                    pedido.metodoPago,
+                    pedido.estado
+                ].join(" ").toLowerCase();
+                return coincideEstado && textoPedido.includes(busqueda);
+            });
+
+            pedidosFiltrados.sort((a, b) =>
+                new Date(b.fecha) - new Date(a.fecha)
+            );
+
+            tablaPedidos.innerHTML = "";
+
+            pedidosFiltrados.forEach(pedido => {
+                const fila = document.createElement("tr");
+
+                if (pedidoSeleccionado &&
+                    pedidoSeleccionado.id === pedido.id) {
+                    fila.classList.add("seleccionado");
+                }
+
+                fila.innerHTML = `
+                    <td>
+                      <span class="pedido-numero">
+                    </td>
+                    <td>${formatoFecha(pedido.fecha)}</td>
+                    <td>
+                        <span class="cliente-nombre">
+                            ${escaparHTML(pedido.nombreCliente || "Sin nombre")}
+                        </span>
+                        <span class="texto-secundario">
+                            ${escaparHTML(pedido.telefono || "Sin teléfono")}
+                        </span>
+                    </td>
+                    <td><strong>${formatoDinero(pedido.total)}</strong></td>
+                    <td>${escaparHTML(pedido.metodoPago || "No indicado")}</td>
+                    <td>
+                        <span class="estado ${claseEstado(pedido.estado)}">
+                            ${escaparHTML(pedido.estado || "Pendiente")}
+                        </span>
+                    </td>
+                    <td>
+                        <button class="boton-ver" type="button"
+                                data-ver-pedido="${escaparHTML(pedido.id)}">
+                            Ver detalle
+                        </button>
+                    </td>
+                `;
+
+                tablaPedidos.appendChild(fila);
+            });
+
+            tablaVacia.classList.toggle(
+                "oculto",
+                pedidosFiltrados.length > 0
+            );
+
+            contadorPedidos.textContent =
+                `${pedidosFiltrados.length} de ${pedidosGuardados.length} pedidos`;
+        }
+
+        // Evento delegado para abrir el detalle sin recargar la página.
+        tablaPedidos.addEventListener("click", evento => {
+            const boton = evento.target.closest("[data-ver-pedido]");
+
+            if (!boton) return;
+
+            const id = Number(boton.dataset.verPedido);
+            const pedido = pedidosGuardados.find(p => p.id === id);
+
+            if (pedido) {
+                abrirDetalle(pedido);
+            }
+        });
+
+        // -----------------------------------------------------
+        // FILTROS Y BÚSQUEDA
+        // -----------------------------------------------------
+
+        buscarPedido.addEventListener("input", mostrarPedidos);
+
+        document.getElementById("filtrosEstados")
+            .addEventListener("click", evento => {
+                const boton = evento.target.closest("[data-estado]");
+
+                if (!boton) return;
+
+                estadoFiltro = boton.dataset.estado;
+
+                document.querySelectorAll(".filtro-boton")
+                    .forEach(elemento => {
+                        elemento.classList.toggle(
+                            "activo",
+                            elemento === boton
+                        );
+                    });
+
+                mostrarPedidos();
+            });
+
+        document.getElementById("botonRecargar")
+            .addEventListener("click", async () => {
+                try {
+                    await cargarPedidos();
+                    await cargarProductos();
+                } catch {
+                    // El error ya se muestra en el panel.
+                }
+            });
+        // -----------------------------------------------------
+        // ABRIR PANEL LATERAL
+        // -----------------------------------------------------
+
+        async function abrirDetalle(pedido, guardarPosicion = true) {
+            if (guardarPosicion) {
+                posicionScrollAnterior = window.scrollY;
+            }
+
+            pedidoSeleccionado = pedido;
+
+            mostrarPedidos();
+
+            panelFondo.classList.add("abierto");
+            panelLateral.classList.add("abierto");
+            panelLateral.setAttribute("aria-hidden", "false");
+            document.body.style.overflow = "hidden";
+
+            mensajePanel.textContent = "";
+            panelContenido.innerHTML = `
+                <p class="texto-secundario">Cargando detalles del pedido...</p>
+            `;
+
+            configurarAcciones(pedido);
+
+            try {
+                const respuesta = await fetch(
+                    `${API}/Pedidos/${pedido.id}/detalles`,
+                    {
+                        method: "GET",
+                        headers: encabezadosAutorizacion()
+                    }
+                );
+
+                const datos = await leerRespuesta(respuesta);
+
+                if (!respuesta.ok) {
+                    throw new Error(
+                        datos.mensaje ||
+                        "No fue posible consultar los productos del pedido."
+                    );
+                }
+
+                // Si el usuario seleccionó otro pedido durante la consulta,
+                // no mostrar los datos de la consulta anterior.
+                if (!pedidoSeleccionado ||
+                    pedidoSeleccionado.id !== pedido.id) {
+                    return;
+                }
+
+                mostrarDetallePedido(pedido, Array.isArray(datos) ? datos : []);
+
+            } catch (error) {
+                if (!pedidoSeleccionado ||
+                    pedidoSeleccionado.id !== pedido.id) {
+                    return;
+                }
+
+                mostrarDetallePedido(pedido, []);
+
+                const aviso = document.createElement("p");
+                aviso.className = "mensaje error";
+                aviso.textContent =
+                    "No se pudieron cargar los detalles de los productos. " +
+                    error.message;
+
+                panelContenido.appendChild(aviso);
+            }
+        }
+
+        // -----------------------------------------------------
+        // CONTENIDO DEL PANEL
+        // -----------------------------------------------------
+
+        function mostrarDetallePedido(pedido, detalles) {
+            const estado = pedido.estado || "Pendiente";
+
+            const productosHTML = detalles.length
+                ? detalles.map(detalle => `
+                    <div class="producto-fila">
+                        <div>
+                            <strong>
+                                Producto #${escaparHTML(detalle.productoId)}
+                            </strong>
+                            <small>
+                                Cantidad: ${escaparHTML(detalle.cantidad)}
+                            </small>
+                            <small>
+                                Precio unitario:
+                                ${formatoDinero(detalle.precioUnitario)}
+                            </small>
+                        </div>
+                        <strong>${formatoDinero(detalle.subtotal)}</strong>
+                    </div>
+                `).join("")
+                : `
+                    <p class="texto-secundario">
+                        No hay detalles de productos disponibles para mostrar.
+                    </p>
+                `;
+
+            panelContenido.innerHTML = `
+                <div class="pedido-panel-titulo">
+                    <div>
+                        <h3>Pedido #${escaparHTML(pedido.referenciaComercial || pedido.id)}</h3>
+                        <span class="texto-secundario">
+                            ${formatoFecha(pedido.fecha)}
+                        </span>
+                    </div>
+
+                    <span class="estado ${claseEstado(estado)}">
+                        ${escaparHTML(estado)}
+                    </span>
+                </div>
+
+                <div class="dato-fila">
+                    <span class="etiqueta">Método de pago</span>
+                    <strong class="valor">
+                        ${escaparHTML(pedido.metodoPago || "No indicado")}
+                    </strong>
+                </div>
+
+                <div class="dato-fila">
+                    <span class="etiqueta">Cédula</span>
+                    <span class="valor">
+                       ${escaparHTML(pedido.cedula || "No registrada")}
+                    </span>
+                </div>
+
+                <section class="seccion-panel">
+                    <h4>Cliente</h4>
+
+                    <div class="dato-fila">
+                        <span class="etiqueta">Nombre</span>
+                        <strong class="valor">
+                            ${escaparHTML(pedido.nombreCliente || "Sin nombre")}
+                        </strong>
+                    </div>
+
+                    <div class="dato-fila">
+                        <span class="etiqueta">Teléfono</span>
+                        <span class="valor">
+                            ${escaparHTML(pedido.telefono || "No indicado")}
+                        </span>
+                    </div>
+
+                    <div class="dato-fila">
+                        <span class="etiqueta">Dirección</span>
+                        <span class="valor">
+                            ${escaparHTML(pedido.direccion || "No indicada")}
+                        </span>
+                    </div>
+
+                    <div class="dato-fila">
+                        <span class="etiqueta">Ciudad</span>
+                        <span class="valor">
+                            ${escaparHTML(pedido.ciudad || "No indicada")}
+                        </span>
+                    </div>
+                </section>
+
+                <section class="seccion-panel">
+                    <h4>Productos (${detalles.length})</h4>
+                    <div class="productos-lista">
+                        ${productosHTML}
+                    </div>
+                </section>
+
+                <section class="seccion-panel">
+                    <div class="dato-fila total-fila">
+                        <span>Total del pedido</span>
+                        <strong>${formatoDinero(pedido.total)}</strong>
+                    </div>
+                </section>
+
+                <section class="seccion-panel">
+                    <h4>Seguimiento del pedido</h4>
+                    ${mostrarSeguimiento(estado)}
+                </section>
+            `;
+        }
+
+        // -----------------------------------------------------
+        // SEGUIMIENTO VISUAL DEL ESTADO
+        // -----------------------------------------------------
+
+        function mostrarSeguimiento(estado) {
+            const etapas = [
+                "Pendiente",
+                "Confirmado",
+                "Enviado",
+                "Entregado"
+            ];
+
+            if (estado === "Cancelado") {
+                return `
+                    <p class="mensaje error">
+                        Este pedido está cancelado.
+                    </p>
+                `;
+            }
+
+            const indiceActual = etapas.indexOf(estado);
+
+            return `
+                <div style="
+                    display:grid;
+                    grid-template-columns:repeat(4,minmax(0,1fr));
+                    gap:6px;
+                    text-align:center;
+                ">
+                    ${etapas.map((etapa, indice) => {
+                const completada = indiceActual >= indice;
+
+                return `
+                            <div>
+                                <div style="
+                                    width:28px;
+                                    height:28px;
+                                    margin:0 auto 8px;
+                                    border-radius:50%;
+                                    display:flex;
+                                    align-items:center;
+                                    justify-content:center;
+                                    color:${completada ? "#fff" : "#68756f"};
+                                    background:${completada ? "#075b43" : "#e5ebe7"};
+                                    font-size:12px;
+                                    font-weight:bold;
+                                ">
+                                    ${completada ? "✓" : indice + 1}
+                                </div>
+                                <span style="
+                                    display:block;
+                                    font-size:10px;
+                                    color:${completada ? "#075b43" : "#68756f"};
+                                    overflow-wrap:anywhere;
+                                ">
+                                    ${etapa}
+                                </span>
+                            </div>
+                        `;
+            }).join("")}
+                </div>
+            `;
+        }
+
+        // -----------------------------------------------------
+        // ACCIONES DISPONIBLES SEGÚN EL ESTADO
+        // -----------------------------------------------------
+
+        function configurarAcciones(pedido) {
+            panelAcciones.classList.remove("oculto");
+            nuevoEstado.innerHTML = "";
+
+            const estado = pedido.estado || "Pendiente";
+
+            if (estado === "Pendiente") {
+                nuevoEstado.add(new Option(
+                    "Selecciona una acción",
+                    ""
+                ));
+                nuevoEstado.add(new Option(
+                    "Marcar como enviado",
+                    "Enviado"
+                ));
+                nuevoEstado.add(new Option(
+                    "Cancelar pedido",
+                    "Cancelado"
+                ));
+
+            } else if (estado === "Confirmado") {
+                nuevoEstado.add(new Option(
+                    "Selecciona una acción",
+                    ""
+                ));
+                nuevoEstado.add(new Option(
+                    "Marcar como enviado",
+                    "Enviado"
+                ));
+                nuevoEstado.add(new Option(
+                    "Cancelar pedido",
+                    "Cancelado"
+                ));
+
+            } else if (estado === "Enviado") {
+                nuevoEstado.add(new Option(
+                    "Selecciona una acción",
+                    ""
+                ));
+                nuevoEstado.add(new Option(
+                    "Marcar como entregado",
+                    "Entregado"
+                ));
+
+            } else {
+                nuevoEstado.add(new Option(
+                    estado === "Entregado"
+                        ? "Pedido entregado"
+                        : "Pedido cancelado",
+                    ""
+                ));
+            }
+
+            // Solo se permite confirmar el pago de pedidos pendientes.
+            botonConfirmarPago.classList.toggle(
+                "oculto",
+                estado !== "Pendiente"
+            );
+
+            botonActualizarEstado.disabled =
+                estado === "Entregado" || estado === "Cancelado";
+
+            nuevoEstado.disabled = botonActualizarEstado.disabled;
+
+            botonActualizarEstado.textContent =
+                estado === "Entregado" || estado === "Cancelado"
+                    ? "Sin acciones disponibles"
+                    : "Actualizar estado";
+
+            mensajePanel.textContent = "";
+        }
+
+        // -----------------------------------------------------
+        // CONFIRMAR PAGO
+        // -----------------------------------------------------
+
+        async function confirmarPago() {
+            if (!pedidoSeleccionado) return;
+
+            const pedido = pedidoSeleccionado;
+
+            if (pedido.estado !== "Pendiente") {
+                mostrarMensaje(
+                    mensajePanel,
+                    "Solo puedes confirmar el pago de pedidos pendientes.",
+                    "error"
+                );
+                return;
+            }
+
+            const confirmar = window.confirm(
+                `¿Verificaste que el dinero del pedido #${pedido.referenciaComercial || pedido.id} ` +
+                "ingresó a tu cuenta?"
+            );
+
+            if (!confirmar) return;
+
+            botonConfirmarPago.disabled = true;
+            mostrarMensaje(mensajePanel, "Confirmando pago...");
+
+            try {
+                const respuesta = await fetch(
+                    `${API}/Pedidos/${pedido.id}/confirmar-pago`,
+                    {
+                        method: "PUT",
+                        headers: encabezadosAutorizacion()
+                    }
+                );
+
+                const datos = await leerRespuesta(respuesta);
+
+                if (!respuesta.ok) {
+                    throw new Error(
+                        datos.mensaje || "No se pudo confirmar el pago."
+                    );
+                }
+
+                mostrarMensaje(
+                    mensajePanel,
+                    "Pago confirmado correctamente.",
+                    "exito"
+                );
+
+                await cargarPedidos();
+
+            } catch (error) {
+                mostrarMensaje(
+                    mensajePanel,
+                    error.message || "Ocurrió un error al confirmar el pago.",
+                    "error"
+                );
+            } finally {
+                botonConfirmarPago.disabled = false;
+            }
+        }
+
+        // -----------------------------------------------------
+        // CAMBIAR ESTADO DEL PEDIDO
+        // -----------------------------------------------------
+
+        async function cambiarEstado() {
+            if (!pedidoSeleccionado) return;
+
+            const pedido = pedidoSeleccionado;
+            const estadoAnterior = pedido.estado;
+            const estadoNuevo = nuevoEstado.value;
+
+            if (!estadoNuevo) {
+                mostrarMensaje(
+                    mensajePanel,
+                    "Selecciona el estado que deseas aplicar.",
+                    "error"
+                );
+                return;
+            }
+
+            if (estadoAnterior === "Entregado" ||
+                estadoAnterior === "Cancelado") {
+                mostrarMensaje(
+                    mensajePanel,
+                    "Este pedido no admite más cambios de estado.",
+                    "error"
+                );
+                return;
+            }
+
+            const confirmar = window.confirm(
+                `¿Deseas cambiar el pedido #${pedido.referenciaComercial || pedido.id} ` +
+                `de "${estadoAnterior}" a "${estadoNuevo}"?`
+            );
+
+            if (!confirmar) return;
+
+            botonActualizarEstado.disabled = true;
+            mostrarMensaje(mensajePanel, "Actualizando pedido...");
+
+            try {
+                const respuesta = await fetch(
+                    `${API}/Pedidos/${pedido.id}/estado`,
+                    {
+                        method: "PUT",
+                        headers: {
+                            ...encabezadosAutorizacion(),
+                            "Content-Type": "application/json"
+                        },
+                        // La API espera el estado como una cadena JSON.
+                        body: JSON.stringify(estadoNuevo)
+                    }
+                );
+
+                const datos = await leerRespuesta(respuesta);
+
+                if (!respuesta.ok) {
+                    throw new Error(
+                        datos.mensaje || "No se pudo actualizar el pedido."
+                    );
+                }
+
+                mostrarMensaje(
+                    mensajePanel,
+                    `El pedido #${pedido.id} ahora está "${estadoNuevo}".`,
+                    "exito"
+                );
+
+                await cargarPedidos();
+
+            } catch (error) {
+                mostrarMensaje(
+                    mensajePanel,
+                    error.message || "Ocurrió un error al actualizar el estado.",
+                    "error"
+                );
+            } finally {
+                botonActualizarEstado.disabled = false;
+
+                if (pedidoSeleccionado) {
+                    configurarAcciones(pedidoSeleccionado);
+                }
+            }
+        }
+
+        // -----------------------------------------------------
+        // CERRAR PANEL LATERAL
+        // -----------------------------------------------------
+
+        function cerrarPanel() {
+            panelFondo.classList.remove("abierto");
+            panelLateral.classList.remove("abierto");
+            panelLateral.setAttribute("aria-hidden", "true");
+            document.body.style.overflow = "";
+
+            pedidoSeleccionado = null;
+            panelAcciones.classList.add("oculto");
+
+            mostrarPedidos();
+
+            // La tabla no se reconstruye al abrir el panel; al cerrarlo,
+            // regresamos a la posición que tenía la ventana.
+            window.scrollTo({
+                left: 0,
+                top: posicionScrollAnterior,
+                behavior: "auto"
+            });
+        }
+
+        document.getElementById("irPedidos").addEventListener("click", () => {
+            document.getElementById("pedidos").scrollIntoView({ behavior: "smooth" });
+        });
+
+        document.querySelectorAll("[data-accion]").forEach(boton => {
+            boton.addEventListener("click", () => {
+                if (boton.dataset.accion === "pendientes") {
+                    estadoFiltro = "Pendiente";
+                    document.querySelectorAll(".filtro-boton").forEach(b => {
+                        b.classList.toggle("activo", b.dataset.estado === "Pendiente");
+                    });
+                    mostrarPedidos();
+                }
+                document.getElementById("pedidos").scrollIntoView({ behavior: "smooth" });
+            });
+        });
+
+        document.getElementById("accionActualizar").addEventListener("click", () => {
+            cargarPedidos().catch(() => {});
+        });
+
+        document.getElementById("cerrarPanel")
+            .addEventListener("click", cerrarPanel);
+
+        panelFondo.addEventListener("click", cerrarPanel);
+
+        document.addEventListener("keydown", evento => {
+            if (evento.key === "Escape" &&
+                panelLateral.classList.contains("abierto")) {
+                cerrarPanel();
+            }
+        });
+
+        // -----------------------------------------------------
+        // EVENTOS DE LOS BOTONES
+        // -----------------------------------------------------
+
+        botonConfirmarPago.addEventListener(
+            "click",
+            confirmarPago
+        );
+
+        botonActualizarEstado.addEventListener(
+            "click",
+            cambiarEstado
+        );
+
+        document.getElementById("botonCerrarSesion")
+            .addEventListener("click", () => {
+                token = null;
+                pedidosGuardados = [];
+                pedidoSeleccionado = null;
+
+                cerrarPanel();
+
+                aplicacion.classList.add("oculto");
+                loginPantalla.classList.remove("oculto");
+
+                loginFormulario.reset();
+                mostrarMensaje(mensajeLogin, "");
+                mostrarMensaje(mensajeGeneral, "");
+
+                tablaPedidos.innerHTML = "";
+                window.scrollTo(0, 0);
+            });
+
+        // ================= MÓDULOS DE INVENTARIO, PRODUCTOS Y VENTAS =================
+        const dineroCOP = valor => new Intl.NumberFormat("es-CO", {style:"currency",currency:"COP",maximumFractionDigits:0}).format(Number(valor)||0);
+        async function apiProductos(url="/Productos", options={}) {
+            const headers={...(options.headers||{})};
+            if(token) headers.Authorization=`Bearer ${token}`;
+            if(options.body) headers["Content-Type"]="application/json";
+            const r=await fetch(`${API}${url}`,{...options,headers});
+            const d=await leerRespuesta(r);
+            if(!r.ok) throw new Error(d.mensaje||d.title||`Error HTTP ${r.status}`);
+            return d;
+        }
+        async function cargarProductos(){
+            try{productosGuardados=await apiProductos(); if(!Array.isArray(productosGuardados)) throw new Error("La API no devolvió productos.");
+                renderInventario();renderProductos();
+            }catch(e){const el=document.getElementById("mensajeProducto");if(el)el.textContent=e.message;}
+        }
+        function renderInventario(){
+            const q=(document.getElementById("buscarInventario")?.value||"").toLowerCase();const filtro=document.getElementById("filtroStock")?.value||"todos";
+            const list=productosGuardados.filter(p=>{const st=Number(p.stock)||0;const match=`${p.nombre} ${p.referencia} ${p.tono||""} ${p.categoria}`.toLowerCase().includes(q);return match&&(filtro==="todos"||(filtro==="agotado"&&st===0)||(filtro==="bajo"&&st>0&&st<=5)||(filtro==="disponible"&&st>5));});
+            document.getElementById("invTotal").textContent=productosGuardados.length;document.getElementById("invUnidades").textContent=productosGuardados.reduce((a,p)=>a+(Number(p.stock)||0),0);document.getElementById("invAgotados").textContent=productosGuardados.filter(p=>Number(p.stock)===0).length;document.getElementById("invBajo").textContent=productosGuardados.filter(p=>Number(p.stock)>0&&Number(p.stock)<=5).length;
+            document.getElementById("tablaInventario").innerHTML=list.map(p=>{const st=Number(p.stock)||0;const cls=st===0?"out":st<=5?"low":"";const label=st===0?"Agotado":st<=5?"Stock bajo":"Disponible";return `<tr><td>${escaparHTML(p.nombre)}</td><td>${escaparHTML(p.referencia)}</td><td>${escaparHTML(p.tono||"—")}</td><td>${escaparHTML(p.categoria)}</td><td>${dineroCOP(p.precio)}</td><td>${st}</td><td><span class="stock-badge ${cls}">${label}</span></td></tr>`}).join("")||'<tr><td colspan="7">No hay productos para mostrar.</td></tr>';
+        }
+        function renderProductos(){const q=(document.getElementById("buscarProductos")?.value||"").toLowerCase();const list=productosGuardados.filter(p=>`${p.nombre} ${p.referencia} ${p.tono||""}`.toLowerCase().includes(q));document.getElementById("tablaProductos").innerHTML=list.map(p=>`<tr><td>${escaparHTML(p.nombre)}</td><td>${escaparHTML(p.referencia)}</td><td>${escaparHTML(p.tono||"—")}</td><td>${dineroCOP(p.precio)}</td><td>${Number(p.stock)||0}</td><td><button class="admin-btn light" type="button" onclick="editarProducto(${p.id})">Editar</button> <button class="admin-btn danger" type="button" onclick="eliminarProducto(${p.id})">Eliminar</button></td></tr>`).join("")||'<tr><td colspan="6">No hay productos.</td></tr>';}
+        window.editarProducto=id=>{const p=productosGuardados.find(x=>x.id===id);if(!p)return;document.getElementById("productoId").value=p.id;document.getElementById("prodNombre").value=p.nombre||"";document.getElementById("prodCategoria").value=p.categoria||"";document.getElementById("prodReferencia").value=p.referencia||"";document.getElementById("prodTono").value=p.tono||"";document.getElementById("prodPrecio").value=p.precio||0;document.getElementById("prodStock").value=p.stock||0;document.getElementById("prodImagen").value=p.imagen||"";document.getElementById("tituloFormularioProducto").textContent=`Editar producto #${id}`;document.getElementById("panelProductos").scrollIntoView({behavior:"smooth"});};
+        window.eliminarProducto=async id=>{const p=productosGuardados.find(x=>x.id===id);if(!p||!confirm(`¿Eliminar “${p.nombre}”? Si tiene ventas asociadas, la base de datos impedirá eliminarlo para conservar el historial.`))return;try{await apiProductos(`/Productos/${id}`,{method:"DELETE"});await cargarProductos();alert("Producto eliminado.");}catch(e){alert(`No se pudo eliminar: ${e.message}`);}};
+        document.getElementById("formProducto").addEventListener("submit",async e=>{e.preventDefault();const id=document.getElementById("productoId").value;const producto={nombre:document.getElementById("prodNombre").value.trim(),categoria:document.getElementById("prodCategoria").value.trim(),referencia:document.getElementById("prodReferencia").value.trim(),tono:document.getElementById("prodTono").value.trim(),precio:Number(document.getElementById("prodPrecio").value),stock:Number(document.getElementById("prodStock").value),imagen:document.getElementById("prodImagen").value.trim()};try{await apiProductos(id?`/Productos/${id}`:"/Productos",{method:id?"PUT":"POST",body:JSON.stringify(id?{id:Number(id),...producto}:producto)});document.getElementById("mensajeProducto").textContent="Producto guardado correctamente.";e.target.reset();document.getElementById("productoId").value="";document.getElementById("tituloFormularioProducto").textContent="Registrar producto";await cargarProductos();}catch(err){document.getElementById("mensajeProducto").textContent=err.message;}});
+        document.getElementById("limpiarProducto").addEventListener("click",()=>{document.getElementById("formProducto").reset();document.getElementById("productoId").value="";document.getElementById("tituloFormularioProducto").textContent="Registrar producto";});
+        async function actualizarVentas(){
+            const pagados=pedidosGuardados.filter(p=>["Confirmado","Enviado","Entregado"].includes(p.estado));
+            const ingreso=pagados.reduce((a,p)=>a+(Number(p.total)||0),0);
+            document.getElementById("ventasIngresos").textContent=dineroCOP(ingreso);
+            document.getElementById("ventasPedidos").textContent=pagados.length;
+            document.getElementById("ventasTicket").textContent=dineroCOP(pagados.length?ingreso/pagados.length:0);
+
+            // Las unidades se calculan desde los detalles de los pedidos pagados,
+            // no desde el número de pedidos. Si no hay pedidos pagados, el total es 0.
+            const unidadesEl=document.getElementById("ventasUnidades");
+            if(pagados.length===0){
+                unidadesEl.textContent="0";
+            }else{
+                try{
+                    const detallesPorPedido=await Promise.all(
+                        pagados.map(p=>apiProductos(`/Pedidos/${p.id}/detalles`))
+                    );
+                    const unidades=detallesPorPedido.flat().reduce((total,detalle)=>total+(Number(detalle.cantidad)||0),0);
+                    unidadesEl.textContent=unidades;
+                }catch(error){
+                    unidadesEl.textContent="—";
+                    console.error("No fue posible calcular las unidades vendidas:",error);
+                }
+            }
+
+            const dias=Array.from({length:7},(_,i)=>{
+                const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()-(6-i));return d;
+            });
+            const daily=dias.map(d=>{
+                const items=pagados.filter(p=>{const x=new Date(p.fecha);return x.toDateString()===d.toDateString();});
+                return {
+                    d,
+                    amount:items.reduce((a,p)=>a+(Number(p.total)||0),0),
+                    // Esta gráfica es actividad de pedidos y contempla todos los estados,
+                    // incluidos los cancelados; no representa ventas ni ingresos.
+                    count:pedidosGuardados.filter(p=>new Date(p.fecha).toDateString()===d.toDateString()).length
+                };
+            });
+            renderBarras("graficaIngresos",daily.map(x=>({label:x.d.toLocaleDateString("es-CO",{weekday:"short"}),value:x.amount})),true);
+            renderBarras("graficaOrdenes",daily.map(x=>({label:x.d.toLocaleDateString("es-CO",{weekday:"short"}),value:x.count})),false);
+        }
+        function renderBarras(id,data,money){const el=document.getElementById(id);const max=Math.max(1,...data.map(x=>x.value));el.innerHTML=data.map(x=>`<div class="bar-col"><div title="${money?dineroCOP(x.value):x.value+' pedidos'}" class="bar ${money?'money':''}" style="height:${Math.max(3,x.value/max*145)}px"></div>${money?dineroCOP(x.value):x.value}<br>${x.label}</div>`).join("");}
+        function navegarAdmin(id){document.querySelectorAll(".admin-page").forEach(x=>x.classList.toggle("activa",x.id===id));document.querySelectorAll(".sidebar-nav .nav-link[data-page]").forEach(x=>x.classList.toggle("active",x.dataset.page===id));if(id==="panelInventario")renderInventario();if(id==="panelProductos")renderProductos();if(id==="panelVentas")actualizarVentas();}
+        document.querySelectorAll(".sidebar-nav .nav-link[data-page]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();navegarAdmin(a.dataset.page);}));
+        document.getElementById("recargarInventario").addEventListener("click",cargarProductos);document.getElementById("recargarProductos").addEventListener("click",cargarProductos);document.getElementById("buscarInventario").addEventListener("input",renderInventario);document.getElementById("filtroStock").addEventListener("change",renderInventario);document.getElementById("buscarProductos").addEventListener("input",renderProductos);
+        // Reubica el listado de pedidos existente dentro de su sección dedicada, sin duplicarlo.
+        const pedidosOriginal=document.getElementById("pedidos");document.getElementById("pedidosMount").appendChild(pedidosOriginal);pedidosOriginal.style.display="block";
+
+    </script>
+
+</body>
+
+</html>

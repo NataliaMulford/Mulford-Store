@@ -1,18 +1,29 @@
-# .NET
-bin/
-obj/
+# Respaldos de base de datos
+*.bacpac
+*.bak
+*.mdf
+*.ldf
 
-# Visual Studio
-.vs/
-*.user
-*.suo
+# Respaldos locales
+respaldos-admin/
+**/respaldos-admin/
+respaldo-*.patch
+*.patch
 
-# Logs
-*.log
+# Secretos y credenciales
+.env
+.env.*
+!.env.example
+secrets.json
+# Archivos locales de .NET
+**/bin/
+**/obj/
 
-# Configuración local
-appsettings.Development.json
+# Configuración de desarrollo
+**/appsettings.Development.json
 
-# Sistema
-.DS_Store
-Thumbs.db
+# Respaldos
+*.bacpac
+*.bak
+*.patch
+**/respaldos-admin/

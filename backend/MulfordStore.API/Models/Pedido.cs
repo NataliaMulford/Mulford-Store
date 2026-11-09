@@ -4,6 +4,10 @@ namespace MulfordStore.API.Models
     {
         public int Id { get; set; }
 
+        public string ReferenciaComercial { get; set; } = string.Empty;
+
+        public string? Cedula { get; set; }
+
         public string NombreCliente { get; set; } = string.Empty;
 
         public string Telefono { get; set; } = string.Empty;

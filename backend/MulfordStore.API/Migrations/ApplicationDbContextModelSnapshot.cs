@@ -88,6 +88,10 @@ namespace MulfordStore.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Cedula")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<string>("Ciudad")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -111,6 +115,11 @@ namespace MulfordStore.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ReferenciaComercial")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<string>("Telefono")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -120,6 +129,9 @@ namespace MulfordStore.API.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ReferenciaComercial")
+                        .IsUnique();
 
                     b.ToTable("Pedidos");
                 });

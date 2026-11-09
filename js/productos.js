@@ -1164,6 +1164,12 @@ document.addEventListener(
                             ?.value
                             .trim();
 
+                    const cedula =
+                        document
+                            .getElementById("cedula")
+                            ?.value
+                            .trim();
+
 
                     const telefono =
                         document
@@ -1191,20 +1197,20 @@ document.addEventListener(
                             ?.value
                             .trim();
 
-
                     if (
                         !nombreCliente ||
+                        !cedula ||
                         !telefono ||
                         !direccion ||
                         !ciudad
                     ) {
-
-                        alert(
-                            "Completa todos los datos de entrega."
-                        );
-
+                        alert("Completa todos los datos del cliente.");
                         return;
+                    }
 
+                    if (!/^\d{5,15}$/.test(cedula)) {
+                        alert("La cédula debe contener entre 5 y 15 dígitos.");
+                        return;
                     }
 
 
@@ -1246,6 +1252,8 @@ document.addEventListener(
                     window.checkoutData = {
 
                         nombreCliente,
+
+                        cedula,
 
                         telefono,
 
@@ -1363,31 +1371,27 @@ document.addEventListener(
                         }
 
 
-                        else {
+                        else if (metodoPago === "bancolombia") {
 
                             contenido = `
+        <div class="payment-info">
+            <h4>Pago mediante Bancolombia</h4>
+            <p>Realiza la transferencia utilizando los datos indicados por la tienda.</p>
+            <p><strong>Método seleccionado:</strong> Bancolombia</p>
+        </div>
+    `;
 
-                                <div class="payment-info">
+                        }
 
-                                    <h4>
-                                        Pago contraentrega
-                                    </h4>
+                        else if (metodoPago === "davivienda") {
 
-                                    <p>
-                                        Pagarás cuando recibas
-                                        tu pedido.
-                                    </p>
-
-                                    <p>
-                                        <strong>
-                                            Método seleccionado:
-                                        </strong>
-                                        Contraentrega
-                                    </p>
-
-                                </div>
-
-                            `;
+                            contenido = `
+        <div class="payment-info">
+            <h4>Pago mediante Davivienda</h4>
+            <p>Realiza la transferencia utilizando los datos indicados por la tienda.</p>
+            <p><strong>Método seleccionado:</strong> Davivienda</p>
+        </div>
+    `;
 
                         }
 
@@ -1499,6 +1503,15 @@ document.addEventListener(
                         "SE PRESIONÓ CONFIRMAR PEDIDO"
                     );
 
+                    const paymentContent =
+                        document.getElementById("payment-content");
+
+                    const paymentTotalElement =
+                        document.querySelector(".payment-total");
+
+                    const paymentActions =
+                        document.querySelector(".payment-actions");
+
 
                     if (!window.checkoutData) {
 
@@ -1515,6 +1528,8 @@ document.addEventListener(
 
                         nombreCliente,
 
+                        cedula,
+
                         telefono,
 
                         direccion,
@@ -1526,6 +1541,21 @@ document.addEventListener(
                         totalCompra
 
                     } = window.checkoutData;
+
+                    // ELEMENTOS DE CONFIRMACIÓN DEL PEDIDO
+
+                    const pedidoExitoso =
+                        document.getElementById("pedido-exitoso");
+
+                    const pedidoExitosoId =
+                        document.getElementById("pedido-exitoso-id");
+
+                    const pedidoExitosoTotal =
+                        document.getElementById("pedido-exitoso-total");
+
+                    const pedidoExitosoMetodo =
+                        document.getElementById("pedido-exitoso-metodo");
+
 
 
                     try {
@@ -1555,23 +1585,22 @@ document.addEventListener(
 
                                     body: JSON.stringify({
 
-                                        nombreCliente:
-                                            nombreCliente,
+                                        nombreCliente: nombreCliente,
 
-                                        telefono:
-                                            telefono,
+                                        cedula: cedula,
 
-                                        direccion:
-                                            direccion,
+                                        telefono: telefono,
 
-                                        ciudad:
-                                            ciudad,
+                                        direccion: direccion,
 
-                                        metodoPago:
-                                            metodoPago,
+                                        ciudad: ciudad,
 
-                                        total:
-                                            totalCompra
+                                        metodoPago: metodoPago,
+
+                                        productos: carrito.map(item => ({
+                                            productoId: item.id,
+                                            cantidad: item.cantidad
+                                        }))
 
                                     })
 
@@ -1586,123 +1615,24 @@ document.addEventListener(
 
 
                         if (!respuestaPedido.ok) {
+                            const detalleError = await respuestaPedido.text();
+
+                            console.error(
+                                "DETALLE DEL ERROR DE LA API:",
+                                detalleError
+                            );
 
                             throw new Error(
                                 "Error al crear pedido. HTTP " +
-                                respuestaPedido.status
+                                respuestaPedido.status +
+                                " - " +
+                                detalleError
                             );
-
                         }
 
+                        const pedido = await respuestaPedido.json();
 
-                        const pedido =
-                            await respuestaPedido.json();
-
-
-                        console.log(
-                            "PEDIDO CREADO:",
-                            pedido
-                        );
-
-
-                        /* =================================================
-                           AGREGAR DETALLES
-                        ================================================= */
-
-                        for (
-                            const item
-                            of carrito
-                        ) {
-
-                            const respuestaDetalle =
-                                await fetch(
-                                    `http://localhost:5146/api/Pedidos/${pedido.id}/detalles`,
-                                    {
-
-                                        method: "POST",
-
-                                        headers: {
-
-                                            "Content-Type":
-                                                "application/json"
-
-                                        },
-
-                                        body:
-                                            JSON.stringify({
-
-                                                productoId:
-                                                    item.id,
-
-                                                cantidad:
-                                                    item.cantidad
-
-                                            })
-
-                                    }
-                                );
-
-
-                            console.log(
-                                "RESPUESTA DETALLE:",
-                                respuestaDetalle.status
-                            );
-
-
-                            if (
-                                !respuestaDetalle.ok
-                            ) {
-
-                                throw new Error(
-                                    "Error al agregar producto " +
-                                    item.id +
-                                    ". HTTP " +
-                                    respuestaDetalle.status
-                                );
-
-                            }
-
-                        }
-
-
-                        /* =================================================
-                           MOSTRAR PEDIDO EXITOSO
-                        ================================================= */
-
-                        const pedidoExitoso =
-                            document.getElementById(
-                                "pedido-exitoso"
-                            );
-
-                        const pedidoExitosoId =
-                            document.getElementById(
-                                "pedido-exitoso-id"
-                            );
-
-                        const pedidoExitosoTotal =
-                            document.getElementById(
-                                "pedido-exitoso-total"
-                            );
-
-                        const pedidoExitosoMetodo =
-                            document.getElementById(
-                                "pedido-exitoso-metodo"
-                            );
-
-                        const paymentContent =
-                            document.getElementById(
-                                "payment-content"
-                            );
-
-                        const paymentTotalElement =
-                            document.querySelector(
-                                ".payment-total"
-                            );
-
-                        const paymentActions =
-                            document.querySelector(
-                                ".payment-actions"
-                            );
+                        console.log("PEDIDO CREADO:", pedido);
 
 
                         /* OCULTAR PAGO */
@@ -1742,11 +1672,10 @@ document.addEventListener(
 
                         }
 
-
                         if (pedidoExitosoId) {
 
                             pedidoExitosoId.textContent =
-                                pedido.id;
+                                "#" + pedido.referenciaComercial;
 
                         }
 
@@ -1828,6 +1757,49 @@ document.addEventListener(
             );
 
         }
+
+
+        /* =====================================================
+           ENVIAR COMPROBANTE POR WHATSAPP
+        ===================================================== */
+
+        const enviarComprobanteWhatsApp = document.getElementById(
+            "enviar-comprobante-whatsapp"
+        );
+
+        if (enviarComprobanteWhatsApp) {
+
+            enviarComprobanteWhatsApp.addEventListener("click", () => {
+
+                const numeroWhatsApp = "573224591010";
+
+                const numeroPedido = document.getElementById(
+                    "pedido-exitoso-id"
+                )?.textContent.trim();
+
+                const totalPedido = document.getElementById(
+                    "pedido-exitoso-total"
+                )?.textContent.trim();
+
+                const metodoPagoPedido = document.getElementById(
+                    "pedido-exitoso-metodo"
+                )?.textContent.trim();
+
+                const mensaje =
+                    `Hola, Mulford Store. Realicé el pedido #${numeroPedido}.\n` +
+                    `Total: ${totalPedido}.\n` +
+                    `Método de pago: ${metodoPagoPedido}.\n` +
+                    `Adjunto el comprobante de pago.`;
+
+                const urlWhatsApp =
+                    `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+
+                window.open(urlWhatsApp, "_blank", "noopener,noreferrer");
+
+            });
+
+        }
+
 
 
         /* =====================================================
@@ -1976,31 +1948,19 @@ document.addEventListener(
         }
 
 
-        function obtenerNombreMetodoPago(
-            metodo
-        ) {
 
-            if (
-                metodo === "nequi"
-            ) {
+        function obtenerNombreMetodoPago(metodo) {
 
-                return "Nequi";
+            const metodos = {
+                "nequi": "Nequi",
+                "bre-b": "Bre-B",
+                "bancolombia": "Bancolombia",
+                "davivienda": "Davivienda"
+            };
 
-            }
-
-
-            if (
-                metodo === "bre-b"
-            ) {
-
-                return "Bre-B";
-
-            }
-
-
-            return "Contraentrega";
-
+            return metodos[metodo] || "Método de pago no válido";
         }
+
 
 
         /* =====================================================
