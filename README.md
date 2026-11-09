@@ -1,98 +1,80 @@
-# 💄 Mulford Store
+# MULFORD KORE
 
-Mulford Store es un sitio web estático de una tienda de maquillaje desarrollado como proyecto académico utilizando HTML5, CSS3 y JavaScript.
+### Belleza, estilo y una experiencia de compra digital.
 
-El objetivo del proyecto fue diseñar una interfaz moderna, responsive y organizada aplicando buenas prácticas de desarrollo web.
+Mulford Kore es una tienda online independiente enfocada en la comercialización de productos de belleza y cosmética.
 
----
+Este proyecto consiste en el desarrollo de una plataforma de comercio electrónico propia, diseñada para ofrecer a los clientes una experiencia de navegación y compra sencilla, organizada y adaptable a diferentes dispositivos.
 
-## 🚀 Demo
+El desarrollo integra una interfaz web, una API para la gestión de información y una base de datos para administrar los productos y pedidos.
 
-Próximamente disponible en GitHub Pages.
+## Funcionalidades
 
----
+- Página principal de la tienda.
+- Catálogo de productos.
+- Navegación por categorías.
+- Visualización de productos.
+- Carrito de compras.
+- Proceso de checkout y creación de pedidos.
+- Selección de métodos de pago disponibles.
+- Gestión de pedidos.
+- Panel administrativo.
+- Gestión de inventario y disponibilidad de productos.
+- Diseño adaptable a dispositivos móviles y escritorio.
 
-## 📸 Vista previa
+## Tecnologías
 
-> Agrega aquí una captura de pantalla cuando publiques el proyecto.
-
----
-
-## ✨ Características
-
-- Diseño moderno y responsive.
-- Estructura HTML5 semántica.
-- Organización modular del CSS.
-- Variables CSS para colores y estilos.
-- Menú responsive.
-- Tarjetas de productos.
-- Categorías de maquillaje.
-- Hero principal con imagen promocional.
-- Preparado para futuras funcionalidades como buscador, carrito y modo oscuro.
-
----
-
-## 🛠️ Tecnologías utilizadas
-
+### Frontend
 - HTML5
 - CSS3
 - JavaScript
+
+### Backend
+- C#
+- ASP.NET Core Web API
+- Entity Framework Core
+- Autenticación mediante JWT
+
+### Base de datos
+- Microsoft SQL Server
+
+### Herramientas de desarrollo
+- Visual Studio Code
+- Visual Studio
 - Git
 - GitHub
+- Postman
 
----
+## Arquitectura
 
-## 📁 Estructura del proyecto
+La plataforma está organizada en dos componentes principales:
+
+**Frontend:** interfaz con la que interactúan los clientes y el personal administrativo.
+
+**Backend:** API encargada de procesar las solicitudes, gestionar productos y pedidos, y comunicarse con la base de datos.
+
+## Estructura del repositorio
 
 ```text
-mulford-store/
+Mulford-Store/
 │
 ├── assets/
-│   ├── images/
-│   └── logos/
+├── backend/
+│   └── MulfordStore.API/
+│       ├── Controllers/
+│       ├── Data/
+│       ├── DTOs/
+│       ├── Migrations/
+│       └── Models/
 │
 ├── css/
-│   ├── reset.css
-│   ├── variables.css
-│   ├── base.css
-│   ├── layout.css
-│   ├── components.css
-│   └── responsive.css
-│
+├── data/
 ├── js/
-│   └── app.js
+├── pages/
 │
+├── admin.html
+├── catalogo.html
+├── categorias.html
 ├── index.html
-├── favicon.ico
+├── producto.html
 └── README.md
-```
-
----
-
-## 📚 Lo aprendido
-
-Durante el desarrollo del proyecto se aplicaron conceptos como:
-
-- HTML5 semántico
-- CSS Grid
-- Flexbox
-- Responsive Design
-- Variables CSS
-- Organización modular del código
-- JavaScript para interacción básica
-- Control de versiones con Git
-- Publicación de proyectos en GitHub
-
----
-
-## 👩‍💻 Autora
-
-**Natalia Mulford**
-
-Proyecto desarrollado como parte de mi proceso de formación en desarrollo de software.
-
----
-
-## 📄 Licencia
-
-Proyecto creado con fines educativos.
